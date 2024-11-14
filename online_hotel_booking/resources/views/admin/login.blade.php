@@ -9,6 +9,7 @@
                             <div class="card-header card-header-auth">
                                 <h4 class="text-center">Admin Panel Login</h4>
                                 @if(Session::has("error"))<p class="text-danger m-0">{{ Session::get("error") }}</p>@endif
+                                @if(Session::has("status")) <p class="text-success m-0" style="line-height: 1.1">{{ Session::get("status") }}</p> @endif
                             </div>
                             <div class="card-body card-body-auth">
                                 <form method="POST" action="{{ route("admin.login.submit") }}">

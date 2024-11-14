@@ -24,23 +24,18 @@ class Websitemail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Websitemail',
+            subject: $this->subject,
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            view: 'email.email'
+            view: 'email.email',
+            with : [
+                "body" => $this->body
+            ]
         );
-    }
-
-    public function build () {
-        return $this
-        ->view ("email.email")
-        ->with([
-            "subject" => $this->subject
-        ]);
     }
 
     public function attachments(): array
