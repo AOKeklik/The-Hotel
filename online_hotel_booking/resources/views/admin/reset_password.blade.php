@@ -14,7 +14,7 @@
                                 <form method="POST" action="{{ route('admin.login.reset.submit') }}">
                                     @csrf
                                     @method("POST")
-                                    <input type="hidden" name="email" value="{{ request()->route("email") }}">
+                                    <input type="hidden" name="email" value="{{ $email }}">
                                     <input type="hidden" name="token" value="{{ request()->route("token") }}">
                                     @error("email") <p class="text-danger">{{ $message }}</p> @enderror
                                     <div class="form-group">
