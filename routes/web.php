@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\Front\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("admin")->group(function () {
@@ -22,5 +24,10 @@ Route::prefix("admin")->group(function () {
     /* profile */
     Route::get("/profile", [AdminProfileController::class, "index"])->name("admin.profile")->middleware("admin:admin");
     Route::put("/profile/submit", [AdminProfileController::class, "submit_profile"])->name("admin.profile.submit")->middleware("admin:admin");
+});
+
+Route::prefix("/")->group( function () {
+    Route::get("/", [HomeController::class, "index"])->name("front.index");
+    Route::get("/about", [AboutController::class, "index"])->name("frong.about");
 });
 
