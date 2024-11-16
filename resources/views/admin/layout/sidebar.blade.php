@@ -27,6 +27,14 @@
                 </ul>
             </li>
 
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Testimonials</span></a>
+                <ul class="dropdown-menu">
+                    <li class="active"><a class="nav-link" href="{{ route("admin.testimonials") }}"><i class="fa fa-angle-right"></i> Testimonials</a></li>
+                    <li class=""><a class="nav-link" href="{{ route("admin.testimonial.add") }}"><i class="fa fa-angle-right"></i> Add Testimonial</a></li>
+                </ul>
+            </li>
+
             <li class=""><a class="nav-link" href="setting.html"><i class="fa fa-hand-o-right"></i> <span>Setting</span></a></li>
 
             <li class=""><a class="nav-link" href="form.html"><i class="fa fa-hand-o-right"></i> <span>Form</span></a></li>

@@ -41,10 +41,10 @@
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">        
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">Home</a>
+                            <a href="{{ route("front.index") }}" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="about.html" class="nav-link">About</a>
+                            <a href="{{ route("front.about") }}" class="nav-link">About</a>
                         </li>
                         <li class="nav-item">
                             <a href="javascript:void;" class="nav-link dropdown-toggle">Room & Suite</a>

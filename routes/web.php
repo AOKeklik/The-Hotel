@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSlideController;
+use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -42,10 +43,20 @@ Route::prefix("admin")->group(function () {
     Route::post("/feature/store", [AdminFeatureController::class, "store_feature"])->name("admin.feature.store")->middleware("admin:admin");
     Route::put("/feature/update", [AdminFeatureController::class, "update_feature"])->name("admin.feature.update");
     Route::get("/feature/delete/{feature_id}", [AdminFeatureController::class, "delete_feature"])->name("admin.feature.delete")->middleware("admin:admin");
+
+    /* testimonials */
+    Route::get("/testimonials", [AdminTestimonialController::class, "index"])->name("admin.testimonials")->middleware("admin:admin");
+    Route::get("/testimonial/add", [AdminTestimonialController::class, "add_testimonial"])->name("admin.testimonial.add")->middleware("admin:admin");
+    Route::get("/testimonial/edit/{testimonial_id}", [AdminTestimonialController::class, "edit_testimonial"])->name("admin.testimonial.edit")->middleware("admin:admin");
+    Route::post("/testimonial/store", [AdminTestimonialController::class, "store_testimonial"])->name("admin.testimonial.store")->middleware("admin:admin");
+    Route::put("/testimonial/update", [AdminTestimonialController::class, "update_testimonial"])->name("admin.testimonial.update")->middleware("admin:admin");
+    Route::get("/testimonial/delete/{testimonial_id}", [AdminTestimonialController::class, "delete_testimonial"])->name("admin.testimonial.delete")->middleware("admin:admin");
+
+    /* blogs */
 });
 
 Route::prefix("/")->group( function () {
     Route::get("/", [HomeController::class, "index"])->name("front.index");
-    Route::get("/about", [AboutController::class, "index"])->name("frong.about");
+    Route::get("/about", [AboutController::class, "index"])->name("front.about");
 });
 
