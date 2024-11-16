@@ -3,30 +3,20 @@
 @section("content")
         <div class="slider">
             <div class="slide-carousel owl-carousel">
-                <div class="item" style="background-image:url(uploads/slide1.jpg);">
-                    <div class="bg"></div>
-                    <div class="text">
-                        <h2>Best Hotel in the City</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt libero voluptate, veritatis esse dolorem soluta.
-                        </p>
-                        <div class="button">
-                            <a href="">Read More</a>
+                @foreach($slides as $slide)
+                    <div class="item" style="background-image:url({{ asset("uploads/slide") }}/{{ $slide->photo }});">
+                        <div class="bg"></div>
+                        <div class="text">
+                            <h2>{!! $slide->heading !!}</h2>
+                            <p>{!! $slide->text !!}</p>
+                            @if(!empty($slide->button_text))
+                                <div class="button">
+                                    <a href="{!! $slide->button_url !!}"> {!! $slide->button_text !!}</a>
+                                </div>
+                            @endif
                         </div>
                     </div>
-                </div>
-                <div class="item" style="background-image:url(uploads/slide2.jpg);">
-                    <div class="bg"></div>
-                    <div class="text">
-                        <h2>Quality rooms for the guests</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt libero voluptate, veritatis esse dolorem soluta.
-                        </p>
-                        <div class="button">
-                            <a href="">Read More</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
              

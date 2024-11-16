@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/font_awesome_5_free.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/bootstrap-datepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/bootstrap-timepicker.min.css') }}">
