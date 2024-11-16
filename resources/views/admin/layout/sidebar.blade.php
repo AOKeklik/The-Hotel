@@ -11,11 +11,19 @@
 
             <li class="active"><a class="nav-link" href="{{ route('admin.index') }}"><i class="fa fa-hand-o-right"></i> <span>Dashboard</span></a></li>
 
-            <li class="nav-item dropdown active">
+            <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Slides</span></a>
                 <ul class="dropdown-menu">
                     <li class="active"><a class="nav-link" href="{{ route("admin.slides") }}"><i class="fa fa-angle-right"></i> Slides</a></li>
                     <li class=""><a class="nav-link" href="{{ route("admin.slide.add") }}"><i class="fa fa-angle-right"></i> Add Slide</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Features</span></a>
+                <ul class="dropdown-menu">
+                    <li class="active"><a class="nav-link" href="{{ route("admin.features") }}"><i class="fa fa-angle-right"></i> Features</a></li>
+                    <li class=""><a class="nav-link" href="{{ route("admin.feature.add") }}"><i class="fa fa-angle-right"></i> Add Feature</a></li>
                 </ul>
             </li>
 

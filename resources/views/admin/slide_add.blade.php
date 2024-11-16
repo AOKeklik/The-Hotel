@@ -1,7 +1,7 @@
 @extends("admin.layout.app")
 @section("title", "Add Slide")
 @section("heading", "Add Slide")
-@section("add_button")
+@section("button")
 <div class="ml-auto">
     <a href="{{ route("admin.slides") }}" class="btn btn-primary"><i class="fa fa-eye"></i> Slides</a>
 </div>

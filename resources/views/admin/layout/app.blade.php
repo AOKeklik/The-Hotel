@@ -36,7 +36,7 @@
             <section class="section">
                 <div class="section-header">
                     <h1>@yield("heading")</h1>
-                    @yield("add_button")
+                    @yield("button")
                 </div>
                 @yield("content")
             </section>
