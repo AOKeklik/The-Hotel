@@ -26,7 +26,7 @@
 
     <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
-        <a href="index.html" class="logo">
+        <a href="{{ route("front.index") }}" class="logo">
             <img src="{{ asset("uploads") }}/logo.png" alt="">
         </a>
     </div>
@@ -78,7 +78,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="blog.html" class="nav-link">Blog</a>
+                            <a href="{{ route("front.blog") }}" class="nav-link">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a href="contact.html" class="nav-link">Contact</a>
@@ -89,6 +89,19 @@
         </div>
     </div>
 </div>
+
+@if (!Route::is("front.index"))
+    <div class="page-top">
+        <div class="bg"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>@yield("heading")</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 
 @yield("content")        
 

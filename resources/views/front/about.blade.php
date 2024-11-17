@@ -1,17 +1,7 @@
 @extends("front.layout.app")
 @section("title","About Us")
+@section("heading","About Us")
 @section("content")
-<div class="page-top">
-    <div class="bg"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>About Us</h2>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="page-content">
     <div class="container">
         <div class="row">

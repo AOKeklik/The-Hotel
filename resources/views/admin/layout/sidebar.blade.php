@@ -35,6 +35,14 @@
                 </ul>
             </li>
 
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Posts</span></a>
+                <ul class="dropdown-menu">
+                    <li class="active"><a class="nav-link" href="{{ route("admin.posts") }}"><i class="fa fa-angle-right"></i> Posts</a></li>
+                    <li class=""><a class="nav-link" href="{{ route("admin.post.add") }}"><i class="fa fa-angle-right"></i> Add Post</a></li>
+                </ul>
+            </li>
+
             <li class=""><a class="nav-link" href="setting.html"><i class="fa fa-hand-o-right"></i> <span>Setting</span></a></li>
 
             <li class=""><a class="nav-link" href="form.html"><i class="fa fa-hand-o-right"></i> <span>Form</span></a></li>

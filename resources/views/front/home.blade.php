@@ -7,19 +7,18 @@
                     <div class="item" style="background-image:url({{ asset("uploads/slide") }}/{{ $slide->photo }});">
                         <div class="bg"></div>
                         <div class="text">
-                            <h2>{!! $slide->heading !!}</h2>
-                            <p>{!! $slide->text !!}</p>
+                            <h2>{{ $slide->heading }}</h2>
+                            <p>{{ $slide->text }}</p>
                             @if(!empty($slide->button_text))
                                 <div class="button">
-                                    <a href="{!! $slide->button_url !!}"> {!! $slide->button_text !!}</a>
+                                    <a href="{{ $slide->button_url }}"> {{ $slide->button_text }}</a>
                                 </div>
                             @endif
                         </div>
                     </div>
                 @endforeach
             </div>
-        </div>
-             
+        </div>             
          
         <div class="search-section">
             <div class="container">
@@ -62,8 +61,6 @@
             </div>
         </div>
 
-
-
         <div class="home-feature">
             <div class="container">
                 <div class="row">
@@ -73,16 +70,14 @@
                                 <div class="icon"><i class="{{$feature->icon}}"></i></div>
                                 <div class="text">
                                     <h2>{{$feature->heading}}</h2>
-                                    <p>{!! $feature->text !!}</p>
+                                    <p>{{ $feature->text }}</p>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
             </div>
-        </div>
-
-        
+        </div>        
         
         <div class="home-rooms">
             <div class="container">
@@ -231,8 +226,6 @@
             </div>
         </div>
 
-
-
         <div class="testimonial" style="background-image: url(uploads/testimonial-back.jpg)">
             <div class="bg"></div>
             <div class="container">
@@ -264,9 +257,6 @@
             </div>
         </div>
 
-
-
-
         <div class="blog-item">
             <div class="container">
                 <div class="row">
@@ -275,60 +265,24 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="inner">
-                            <div class="photo">
-                                <img src="uploads/1.jpg" alt="">
-                            </div>
-                            <div class="text">
-                                <h2><a href="post.html">This is a sample blog post title</a></h2>
-                                <div class="short-des">
-                                    <p>
-                                        If you want to get some good contents from the people of your country then just contribute into the main community of your people and I am sure you will be benfitted from that. 
-                                    </p>
+                    @foreach($posts as $post)
+                        <div class="col-md-4">
+                            <div class="inner">
+                                <div class="photo">
+                                    <img src="{{ asset("uploads/post/$post->photo") }}" alt="">
                                 </div>
-                                <div class="button">
-                                    <a href="post.html" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="inner">
-                            <div class="photo">
-                                <img src="uploads/2.jpg" alt="">
-                            </div>
-                            <div class="text">
-                                <h2><a href="post.html">This is a sample blog post title</a></h2>
-                                <div class="short-des">
-                                    <p>
-                                        If you want to get some good contents from the people of your country then just contribute into the main community of your people and I am sure you will be benfitted from that. 
-                                    </p>
-                                </div>
-                                <div class="button">
-                                    <a href="post.html" class="btn btn-primary">Read More</a>
+                                <div class="text">
+                                    <h2><a href="{{ route("front.blog.detail", ["post_id" => $post->id]) }}">{{ $post->heading }}</a></h2>
+                                    <div class="short-des">
+                                        <p>{{ $post->short_content }}</p>
+                                    </div>
+                                    <div class="button">
+                                        <a href="{{ route("front.blog.detail", ["post_id" => $post->id]) }}" class="btn btn-primary">Read More</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="inner">
-                            <div class="photo">
-                                <img src="uploads/3.jpg" alt="">
-                            </div>
-                            <div class="text">
-                                <h2><a href="post.html">This is a sample blog post title</a></h2>
-                                <div class="short-des">
-                                    <p>
-                                        If you want to get some good contents from the people of your country then just contribute into the main community of your people and I am sure you will be benfitted from that. 
-                                    </p>
-                                </div>
-                                <div class="button">
-                                    <a href="post.html" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
