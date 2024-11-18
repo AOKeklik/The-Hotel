@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSlideController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\PhotoController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("admin")->group(function () {
@@ -61,12 +63,21 @@ Route::prefix("admin")->group(function () {
     Route::post("/post/store", [AdminPostController::class, "store_post"])->name("admin.post.store")->middleware("admin:admin");
     Route::put("/post/update", [AdminPostController::class, "update_post"])->name("admin.post.update")->middleware("admin:admin");
     Route::get("/post/delete/{post_id}", [AdminPostController::class, "delete_post"])->name("admin.post.delete")->middleware("admin:admin");
+
+    /* photo galery */
+    Route::get("/photo", [AdminPhotoController::class, "index"])->name("admin.photos")->middleware("admin:admin");
+    Route::get("/photo/add", [AdminPhotoController::class, "add_photo"])->name("admin.photo.add")->middleware("admin:admin");
+    Route::get("/photo/edit/{photo_id}", [AdminPhotoController::class, "edit_photo"])->name("admin.photo.edit")->middleware("admin:admin");
+    Route::post("/photo/store", [AdminPhotoController::class, "store_photo"])->name("admin.photo.store")->middleware("admin:admin");
+    Route::put("/photo/update", [AdminPhotoController::class, "update_photo"])->name("admin.photo.update")->middleware("admin:admin");
+    Route::get("/photo/delete/{photo_id}", [AdminPhotoController::class, "delete_photo"])->name("admin.photo.delete")->middleware("admin:admin");
 });
 
 Route::prefix("/")->group( function () {
-    Route::get("/", [HomeController::class, "index"])->name("front.index");
-    Route::get("/about", [AboutController::class, "index"])->name("front.about");
+    Route::get("", [HomeController::class, "index"])->name("front.index");
+    Route::get("about", [AboutController::class, "index"])->name("front.about");
     Route::get("blog", [BlogController::class, "index"])->name("front.blog");
-    Route::get("/blog/{post_id}", [BlogController::class, "post"])->name("front.blog.detail");
+    Route::get("blog/{post_id}", [BlogController::class, "post"])->name("front.blog.detail");
+    Route::get("photos", [PhotoController::class, "index"])->name("front.photos");
 });
 

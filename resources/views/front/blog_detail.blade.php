@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="main-text">
-                    {{ $post->content }}
+                    {!! $post->content !!}
                 </div>
                 <div class="share-content">
                     <h2>Share</h2>

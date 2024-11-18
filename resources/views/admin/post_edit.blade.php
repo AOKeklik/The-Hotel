@@ -29,8 +29,8 @@
                             @error("content") <p class="text-danger p-0">{{ $message }}</p> @enderror
                         </div>
                         <div class="form-group mb-3">
-                            <label>Photo</label>
-                            <img src="{{ asset("uploads/post/$post->photo") }}" alt="" class="profile-photo w_100_p">
+                            <label style="display: block">Photo</label>
+                            <img src="{{ asset("uploads/post/$post->photo") }}" alt="" class="profile-photo" style="max-width:max-content">
                             <div>
                                 <input onchange="handlerChangeImage(event)" type="file" name="photo">
                             </div>

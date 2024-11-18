@@ -37,8 +37,8 @@
                             @error("button_url") <p class="text-danger m-0">{{ $message }}</p> @enderror
                         </div>
                         <div class="form-group mb-3">
-                            <label>Photo</label>
-                            <img src="{{ asset("uploads/slide") }}/{{ $slide->photo }}" alt="" class="profile-photo w_100_p">
+                            <label style="display: block">Photo</label>
+                            <img src="{{ asset("uploads/slide") }}/{{ $slide->photo }}" alt="" class="profile-photo" style="max-width:max-content">
                             <div>
                                 <input type="file" name="photo" onchange="handlerChangePhoto(event)">
                             </div>
