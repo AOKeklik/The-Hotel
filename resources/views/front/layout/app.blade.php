@@ -35,7 +35,7 @@
     <div class="main-nav">
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ route("front.index") }}">
                     <img src="{{ asset("uploads") }}/logo.png" alt="">
                 </a>
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
@@ -73,7 +73,7 @@
                                     <a href="{{ route("front.photos") }}" class="nav-link">Photo Gallery</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="video-gallery.html" class="nav-link">Video Gallery</a>
+                                    <a href="{{ route("front.videos") }}" class="nav-link">Video Gallery</a>
                                 </li>
                             </ul>
                         </li>

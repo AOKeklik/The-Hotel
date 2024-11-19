@@ -44,10 +44,12 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Photos</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Galeria</span></a>
                 <ul class="dropdown-menu">
                     <li class="active"><a class="nav-link" href="{{ route("admin.photos") }}"><i class="fa fa-angle-right"></i> Photos</a></li>
                     <li class=""><a class="nav-link" href="{{ route("admin.photo.add") }}"><i class="fa fa-angle-right"></i> Add Photo</a></li>
+                    <li class="active"><a class="nav-link" href="{{ route("admin.videos") }}"><i class="fa fa-angle-right"></i> Videos</a></li>
+                    <li class=""><a class="nav-link" href="{{ route("admin.video.add") }}"><i class="fa fa-angle-right"></i> Add Video</a></li>
                 </ul>
             </li>
 
