@@ -1,5 +1,6 @@
 @extends("admin.layout.app")
 @section("title","Edit Video")
+@section("link",route("front.videos"))
 @section("heading","Edit Video")
 @section("button")
     <div class="ml-auto">

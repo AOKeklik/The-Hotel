@@ -6,9 +6,9 @@
                             <h2 class="heading">Site Links</h2>
                             <ul class="useful-links">
                                 <li><a href="rooms.html">Rooms & Suites</a></li>
-                                <li><a href="photo-gallery.html">Photo Gallery</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="{{ route("front.photos") }}">Photo Gallery</a></li>
+                                <li><a href="{{ route("front.blog") }}">Blog</a></li>
+                                <li><a href="">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -16,10 +16,10 @@
                         <div class="item">
                             <h2 class="heading">Useful Links</h2>
                             <ul class="useful-links">
-                                <li><a href="index.html">Home</a></li>
+                                <li><a href="{{ route("front.index") }}">Home</a></li>
                                 <li><a href="terms.html">Terms and Conditions</a></li>
                                 <li><a href="privacy.html">Privacy Policy</a></li>
-                                <li><a href="disclaimer.html">Disclaimer</a></li>
+                                <li><a href="{{ route("front.faq") }}">FAQ</a></li>
                             </ul>
                         </div>
                     </div>

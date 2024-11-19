@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
+use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Front\GalleryController;
 use App\Http\Controllers\Front\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -80,6 +82,14 @@ Route::prefix("admin")->group(function () {
     Route::post("video/store", [AdminVideoController::class, "store_video"])->name("admin.video.store")->middleware("admin:admin");
     Route::put("video/update", [AdminVideoController::class, "update_video"])->name("admin.video.update")->middleware("admin:admin");
     Route::get("video/delete/{video_id}", [AdminVideoController::class, "delete_video"])->name("admin.video.delete")->middleware("admin:admin");
+
+    /* faq */
+    Route::get("faqs", [AdminFaqController::class, "index"])->name("admin.faqs")->middleware("admin:admin");
+    Route::get("faq/add", [AdminFaqController::class, "add_faq"])->name("admin.faq.add")->middleware("admin:admin");
+    Route::get("faq/edit/{faq_id}", [AdminFaqController::class, "edit_faq"])->name("admin.faq.edit")->middleware("admin:admin");
+    Route::post("faq/store", [AdminFaqController::class, "store_faq"])->name("admin.faq.store")->middleware("admin:admin");
+    Route::put("faq/update", [AdminFaqController::class, "update_faq"])->name("admin.faq.update")->middleware("admin:admin");
+    Route::get("faq/delete/{faq_id}", [AdminFaqController::class, "delete_faq"])->name("admin.faq.delete")->middleware("admin:admin");
 });
 
 Route::prefix("/")->group( function () {
@@ -89,5 +99,6 @@ Route::prefix("/")->group( function () {
     Route::get("blog/{post_id}", [BlogController::class, "post"])->name("front.blog.detail");
     Route::get("photos", [GalleryController::class, "photos"])->name("front.photos");
     Route::get("videos", [GalleryController::class, "videos"])->name("front.videos");
+    Route::get("faq", [FaqController::class, "index"])->name("front.faq");
 });
 

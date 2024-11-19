@@ -1,5 +1,6 @@
 @extends("admin.layout.app")
 @section("title","Photos")
+@section("link",route("front.photos"))
 @section("heading","Photos")
 @section("button")
     <div class="ml-auto">

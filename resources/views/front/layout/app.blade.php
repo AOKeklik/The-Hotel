@@ -81,7 +81,7 @@
                             <a href="{{ route("front.blog") }}" class="nav-link">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a href="contact.html" class="nav-link">Contact</a>
+                            <a href="" class="nav-link">Contact</a>
                         </li>
                     </ul>
                 </div>
