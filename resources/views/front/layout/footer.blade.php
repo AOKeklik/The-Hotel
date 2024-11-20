@@ -17,7 +17,9 @@
                             <h2 class="heading">Useful Links</h2>
                             <ul class="useful-links">
                                 <li><a href="{{ route("front.index") }}">Home</a></li>
-                                <li><a href="terms.html">Terms and Conditions</a></li>
+                                @if($pages->terms_status == 1)
+                                    <li><a href="{{ route("front.terms") }}">{{ $pages->terms_title }}</a></li>
+                                @endif
                                 <li><a href="privacy.html">Privacy Policy</a></li>
                                 <li><a href="{{ route("front.faq") }}">FAQ</a></li>
                             </ul>

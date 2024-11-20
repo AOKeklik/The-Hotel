@@ -13,9 +13,16 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
+            
             $table->text("about_heading");
             $table->text("about_content");
             $table->integer("about_status");
+
+            $table->text("terms_title")->nullable();
+            $table->text("terms_heading");
+            $table->text("terms_content");
+            $table->integer("terms_status");
+
             $table->timestamps();
         });
     }
