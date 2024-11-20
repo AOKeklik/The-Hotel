@@ -43,9 +43,11 @@
                         <li class="nav-item">
                             <a href="{{ route("front.index") }}" class="nav-link">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route("front.about") }}" class="nav-link">About</a>
-                        </li>
+                        @if($pages->about_status == 1)
+                            <li class="nav-item">
+                                <a href="{{ route("front.about") }}" class="nav-link">{{ $pages->about_title }}</a>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a href="javascript:void;" class="nav-link dropdown-toggle">Room & Suite</a>
                             <ul class="dropdown-menu">
