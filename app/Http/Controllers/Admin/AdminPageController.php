@@ -61,4 +61,31 @@ class AdminPageController extends Controller
 
         return redirect()->route("admin.page.terms.edit")->with("status","Ters has been updated successfully!");
     }
+
+    public function edit_policy () {
+        $policy = Page::where("id",1)->select("policy_title","policy_heading","policy_content","policy_status")->first();
+        return view("admin.policy_edit",compact("policy"));
+    }
+
+    public function update_policy (Request $request) {
+        $request->validate([
+            "policy_title" => "nullable|string",
+            "policy_heading" => "required|string",
+            "policy_content" => "required|string",
+            "policy_status" => "nullable|string",
+        ]);
+
+        $policy = Page::find(1);
+
+        if(!empty($request->policy_title))
+            $policy->policy_title = $request->policy_title;
+
+        $policy->policy_heading = $request->policy_heading;
+        $policy->policy_content = $request->policy_content;
+        $policy->policy_status = $request->policy_status == "Yes" ? 1 : 0;
+
+        $policy->update();
+
+        return redirect()->route("admin.page.policy.edit")->with("status","Policy has been updated successfully!");
+    }
 }

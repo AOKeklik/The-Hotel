@@ -20,7 +20,9 @@
                                 @if($pages->terms_status == 1)
                                     <li><a href="{{ route("front.terms") }}">{{ $pages->terms_title }}</a></li>
                                 @endif
-                                <li><a href="privacy.html">Privacy Policy</a></li>
+                                @if($pages->policy_status == 1)
+                                    <li><a href="{{ route("front.policy") }}">{{ $pages->policy_title }}</a></li>
+                                @endif
                                 <li><a href="{{ route("front.faq") }}">FAQ</a></li>
                             </ul>
                         </div>

@@ -22,7 +22,12 @@ return new class extends Migration
             $table->text("terms_heading");
             $table->text("terms_content");
             $table->integer("terms_status");
-
+            
+            $table->text("policy_title")->nullable();
+            $table->text("policy_heading");
+            $table->text("policy_content");
+            $table->integer("policy_status");
+            
             $table->timestamps();
         });
     }

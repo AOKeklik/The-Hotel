@@ -16,6 +16,7 @@ use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Front\GalleryController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\PolicyController;
 use App\Http\Controllers\Front\TermsController;
 use Illuminate\Support\Facades\Route;
 
@@ -98,6 +99,8 @@ Route::prefix("admin")->group(function () {
     Route::put("page/about/update", [AdminPageController::class, "update_about"])->name("admin.page.about.update")->middleware("admin:admin");
     Route::get("page/terms/edit", [AdminPageController::class, "edit_terms"])->name("admin.page.terms.edit")->middleware("admin:admin");
     Route::put("page/terms/update", [AdminPageController::class, "update_terms"])->name("admin.page.terms.update")->middleware("admin:admin");
+    Route::get("page/policy/edit", [AdminPageController::class, "edit_policy"])->name("admin.page.policy.edit")->middleware("admin:admin");
+    Route::put("page/policy/update", [AdminPageController::class, "update_policy"])->name("admin.page.policy.update")->middleware("admin:admin");
 });
 
 Route::prefix("/")->group( function () {
@@ -109,5 +112,6 @@ Route::prefix("/")->group( function () {
     Route::get("videos", [GalleryController::class, "videos"])->name("front.videos");
     Route::get("faq", [FaqController::class, "index"])->name("front.faq");
     Route::get("terms", [TermsController::class, "index"])->name("front.terms");
+    Route::get("policy", [PolicyController::class, "index"])->name("front.policy");
 });
 
