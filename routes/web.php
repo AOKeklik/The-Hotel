@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
+use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Front\GalleryController;
 use App\Http\Controllers\Front\HomeController;
@@ -97,6 +98,8 @@ Route::prefix("admin")->group(function () {
     /* pages */
     Route::get("page/about/edit", [AdminPageController::class, "edit_about"])->name("admin.page.about.edit")->middleware("admin:admin");
     Route::put("page/about/update", [AdminPageController::class, "update_about"])->name("admin.page.about.update")->middleware("admin:admin");
+    Route::get("page/contact/edit", [AdminPageController::class, "edit_contact"])->name("admin.page.contact.edit")->middleware("admin:admin");
+    Route::put("page/contact/update", [AdminPageController::class, "update_contact"])->name("admin.page.contact.update")->middleware("admin:admin");
     Route::get("page/terms/edit", [AdminPageController::class, "edit_terms"])->name("admin.page.terms.edit")->middleware("admin:admin");
     Route::put("page/terms/update", [AdminPageController::class, "update_terms"])->name("admin.page.terms.update")->middleware("admin:admin");
     Route::get("page/policy/edit", [AdminPageController::class, "edit_policy"])->name("admin.page.policy.edit")->middleware("admin:admin");
@@ -106,8 +109,13 @@ Route::prefix("admin")->group(function () {
 Route::prefix("/")->group( function () {
     Route::get("", [HomeController::class, "index"])->name("front.index");
     Route::get("about", [AboutController::class, "index"])->name("front.about");
+
+    Route::get("contact", [ContactController::class, "index"])->name("front.contact");
+    Route::post("contact/submit", [ContactController::class, "submit_contact"])->name("front.contact.submit");
+
     Route::get("blog", [BlogController::class, "index"])->name("front.blog");
     Route::get("blog/{post_id}", [BlogController::class, "post"])->name("front.blog.detail");
+    
     Route::get("photos", [GalleryController::class, "photos"])->name("front.photos");
     Route::get("videos", [GalleryController::class, "videos"])->name("front.videos");
     Route::get("faq", [FaqController::class, "index"])->name("front.faq");

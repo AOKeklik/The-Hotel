@@ -18,7 +18,7 @@ class AdminPageController extends Controller
             "about_title" => "nullable|string",
             "about_heading" => "required|string",
             "about_content" => "required|string",
-            "about_status" => "nullable|string",
+            "about_status" => "nullable|string|in:Yes",
         ]);
 
         $about = Page::find(1);
@@ -45,7 +45,7 @@ class AdminPageController extends Controller
             "terms_title" => "nullable|string",
             "terms_heading" => "required|string",
             "terms_content" => "required|string",
-            "terms_status" => "nullable|string",
+            "terms_status" => "nullable|string|in:Yes",
         ]);
 
         $terms = Page::find(1);
@@ -72,7 +72,7 @@ class AdminPageController extends Controller
             "policy_title" => "nullable|string",
             "policy_heading" => "required|string",
             "policy_content" => "required|string",
-            "policy_status" => "nullable|string",
+            "policy_status" => "nullable|string|in:Yes",
         ]);
 
         $policy = Page::find(1);
@@ -87,5 +87,32 @@ class AdminPageController extends Controller
         $policy->update();
 
         return redirect()->route("admin.page.policy.edit")->with("status","Policy has been updated successfully!");
+    }
+
+    public function edit_contact () {
+        $contact = Page::where("id",1)->select("contact_title","contact_heading","contact_content","contact_status")->first();
+        return view("admin.contact_edit",compact("contact"));
+    }
+
+    public function update_contact (Request $request) {
+        $request->validate([
+            "contact_title" => "nullable|string",
+            "contact_heading" => "required|string",
+            "contact_content" => "required|string",
+            "contact_status" => "nullable|string|in:Yes",
+        ]);
+
+        $contact = Page::find(1);
+
+        if (!empty($request->contact_title))
+            $contact->contact_title = $request->contact_title;
+
+        $contact->contact_heading = $request->contact_heading;
+        $contact->contact_content = $request->contact_content;
+        $contact->contact_status = $request->contact_status == "Yes" ? 1 : 0;
+
+        $contact->update();
+
+        return redirect()->route("admin.page.contact.edit")->with("status","Contact has been updated successfully!");
     }
 }

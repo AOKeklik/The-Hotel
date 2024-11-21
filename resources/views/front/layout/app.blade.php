@@ -82,9 +82,9 @@
                         <li class="nav-item">
                             <a href="{{ route("front.blog") }}" class="nav-link">Blog</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">Contact</a>
-                        </li>
+                        @if($pages->contact_status == 1)
+                            <li class="nav-item"><a href="{{ route("front.contact") }}" class="nav-link">{{ $pages->contact_title }}</a></li>
+                        @endif
                     </ul>
                 </div>
             </nav>

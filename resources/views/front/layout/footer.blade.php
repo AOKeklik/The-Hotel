@@ -8,7 +8,9 @@
                                 <li><a href="rooms.html">Rooms & Suites</a></li>
                                 <li><a href="{{ route("front.photos") }}">Photo Gallery</a></li>
                                 <li><a href="{{ route("front.blog") }}">Blog</a></li>
-                                <li><a href="">Contact</a></li>
+                                @if($pages->contact_status == 1)
+                                    <li><a href="{{ route("front.contact") }}">{{ $pages->contact_title }}</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
