@@ -6,7 +6,9 @@
                             <h2 class="heading">Site Links</h2>
                             <ul class="useful-links">
                                 <li><a href="rooms.html">Rooms & Suites</a></li>
-                                <li><a href="{{ route("front.photos") }}">Photo Gallery</a></li>
+                                @if($pages->photo_status == 1)
+                                    <li><a href="{{ route("front.photos") }}">{{ $pages->photo_title }}</a></li>
+                                @endif
                                 <li><a href="{{ route("front.blog") }}">Blog</a></li>
                                 @if($pages->contact_status == 1)
                                     <li><a href="{{ route("front.contact") }}">{{ $pages->contact_title }}</a></li>

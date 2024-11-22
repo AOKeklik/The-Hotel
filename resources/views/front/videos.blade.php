@@ -1,6 +1,6 @@
 @extends("front.layout.app")
-@section("title","Videos")
-@section("heading","Videos")
+@section("title",$video_heading)
+@section("heading",$video_heading)
 @section("content")
 <div class="page-content">
     <div class="container">

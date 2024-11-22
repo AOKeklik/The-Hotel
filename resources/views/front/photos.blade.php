@@ -1,6 +1,6 @@
 @extends("front.layout.app")
-@section("title","Photo Galery")
-@section("heading","Photo Galery")
+@section("title",$photo_heading)
+@section("heading",$photo_heading)
 @section("content")
 <div class="page-content">
     <div class="container">

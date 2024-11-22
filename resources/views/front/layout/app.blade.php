@@ -68,17 +68,23 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="javascript:void;" class="nav-link dropdown-toggle">Gallery</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="{{ route("front.photos") }}" class="nav-link">Photo Gallery</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route("front.videos") }}" class="nav-link">Video Gallery</a>
-                                </li>
-                            </ul>
-                        </li>
+                        @if ($pages->photo_status == 1 || $pages->video_status == 1)
+                            <li class="nav-item">
+                                <a href="javascript:void;" class="nav-link dropdown-toggle">Gallery</a>
+                                <ul class="dropdown-menu">
+                                    @if ($pages->photo_status == 1)
+                                        <li class="nav-item">
+                                            <a href="{{ route("front.photos") }}" class="nav-link">{{ $pages->photo_title }}</a>
+                                        </li>
+                                    @endif
+                                    @if ($pages->video_status == 1)
+                                        <li class="nav-item">
+                                            <a href="{{ route("front.videos") }}" class="nav-link">{{ $pages->video_title }}</a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a href="{{ route("front.blog") }}" class="nav-link">Blog</a>
                         </li>

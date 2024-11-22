@@ -115,4 +115,54 @@ class AdminPageController extends Controller
 
         return redirect()->route("admin.page.contact.edit")->with("status","Contact has been updated successfully!");
     }
+
+    public function edit_photo () {
+        $photo = Page::where("id",1)->select("photo_title","photo_heading","photo_status")->first();
+        return view("admin.photo2_edit",compact("photo"));
+    }
+
+    public function update_photo (Request $request) {
+        $request->validate([
+            "photo_title" => "nullable|string",
+            "photo_heading" => "required|string",
+            "photo_status" => "nullable|in:Yes",
+        ]);
+
+        $photo = Page::find(1);
+
+        if(!empty($request->photo_title))
+            $photo->photo_title = $request->photo_title;
+
+        $photo->photo_heading = $request->photo_heading;
+        $photo->photo_status = $request->photo_status == "Yes" ? 1 : 0;
+        
+        $photo->update();
+
+        return redirect()->back()->with("status","Photo Galery has been updated successfully!");
+    }
+
+    public function edit_video () {
+        $video = Page::where("id",1)->select("video_title","video_heading","video_status")->first();
+        return view("admin.video2_edit",compact("video"));
+    }
+
+    public function update_video (Request $request) {
+        $request->validate([
+            "video_title" => "nullable|string",
+            "video_heading" => "required|string",
+            "video_status" => "nullable|in:Yes",
+        ]);
+
+        $video = Page::find(1);
+
+        if(!empty($request->video_title))
+            $video->video_title = $request->video_title;        
+
+        $video->video_heading = $request->video_heading;
+        $video->video_status = $request->video_status == "Yes" ? 1 : 0;
+        
+        $video->save();
+        
+        return redirect()->back()->with("status","Video Galery has been updated successfully!");
+    }
 }

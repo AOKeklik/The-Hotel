@@ -98,6 +98,10 @@ Route::prefix("admin")->group(function () {
     /* pages */
     Route::get("page/about/edit", [AdminPageController::class, "edit_about"])->name("admin.page.about.edit")->middleware("admin:admin");
     Route::put("page/about/update", [AdminPageController::class, "update_about"])->name("admin.page.about.update")->middleware("admin:admin");
+    Route::get("page/photo/edit", [AdminPageController::class, "edit_photo"])->name("admin.page.photo.edit")->middleware("admin:admin");
+    Route::put("page/photo/update", [AdminPageController::class, "update_photo"])->name("admin.page.photo.update")->middleware("admin:admin");
+    Route::get("page/video/edit", [AdminPageController::class, "edit_video"])->name("admin.page.video.edit")->middleware("admin:admin");
+    Route::put("page/video/update", [AdminPageController::class, "update_video"])->name("admin.page.video.update")->middleware("admin:admin");
     Route::get("page/contact/edit", [AdminPageController::class, "edit_contact"])->name("admin.page.contact.edit")->middleware("admin:admin");
     Route::put("page/contact/update", [AdminPageController::class, "update_contact"])->name("admin.page.contact.update")->middleware("admin:admin");
     Route::get("page/terms/edit", [AdminPageController::class, "edit_terms"])->name("admin.page.terms.edit")->middleware("admin:admin");
