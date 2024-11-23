@@ -1,6 +1,6 @@
 @extends("front.layout.app")
-@section("title","Faq")
-@section("heading","Faq")
+@section("title",$faq_heading)
+@section("heading",$faq_heading)
 @section("content")
 <div class="page-content">
     <div class="container">

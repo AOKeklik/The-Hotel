@@ -68,9 +68,11 @@
         <li class="@if(Route::is("admin.page.about.edit")) active @endif"><a class="nav-link" href="{{ route("admin.page.about.edit") }}"><i class="fa fa-angle-right"></i> About Page</a></li>
         <li class="@if(Route::is("admin.page.photo.edit")) active @endif"><a class="nav-link" href="{{ route("admin.page.photo.edit") }}"><i class="fa fa-angle-right"></i> Pohoto Galery</a></li>
         <li class="@if(Route::is("admin.page.video.edit")) active @endif"><a class="nav-link" href="{{ route("admin.page.video.edit") }}"><i class="fa fa-angle-right"></i> Video Galery</a></li>
+        <li class="@if(Route::is("admin.page.blog.edit")) active @endif"><a class="nav-link" href="{{ route("admin.page.blog.edit") }}"><i class="fa fa-angle-right"></i> Blog Page</a></li>
         <li class="@if(Route::is("admin.page.contact.edit")) active @endif"><a class="nav-link" href="{{ route("admin.page.contact.edit") }}"><i class="fa fa-angle-right"></i> Contact Page</a></li>
         <li class="@if(Route::is("admin.page.policy.edit")) active @endif"><a class="nav-link" href="{{ route("admin.page.policy.edit") }}"><i class="fa fa-angle-right"></i> Policy Page</a></li>
         <li class="@if(Route::is("admin.page.terms.edit")) active @endif"><a class="nav-link" href="{{ route("admin.page.terms.edit") }}"><i class="fa fa-angle-right"></i> Terms Page</a></li>
+        <li class="@if(Route::is("admin.page.faq.edit")) active @endif"><a class="nav-link" href="{{ route("admin.page.faq.edit") }}"><i class="fa fa-angle-right"></i> Fag Page</a></li>
                 
                 </ul>
             </li>

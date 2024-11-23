@@ -9,7 +9,9 @@
                                 @if($pages->photo_status == 1)
                                     <li><a href="{{ route("front.photos") }}">{{ $pages->photo_title }}</a></li>
                                 @endif
-                                <li><a href="{{ route("front.blog") }}">Blog</a></li>
+                                @if($pages->blog_status == 1)
+                                    <li><a href="{{ route("front.blog") }}">{{ $pages->blog_title }}</a></li>
+                                @endif
                                 @if($pages->contact_status == 1)
                                     <li><a href="{{ route("front.contact") }}">{{ $pages->contact_title }}</a></li>
                                 @endif
@@ -27,7 +29,9 @@
                                 @if($pages->policy_status == 1)
                                     <li><a href="{{ route("front.policy") }}">{{ $pages->policy_title }}</a></li>
                                 @endif
-                                <li><a href="{{ route("front.faq") }}">FAQ</a></li>
+                                @if($pages->faq_status == 1)
+                                    <li><a href="{{ route("front.faq") }}">{{ $pages->faq_title }}</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>

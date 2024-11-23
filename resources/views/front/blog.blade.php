@@ -1,6 +1,6 @@
 @extends("front.layout.app")
-@section("title","Blog")
-@section("heading","Blog")
+@section("title",$post_heading)
+@section("heading",$post_heading)
 @section("content")
 <div class="blog-item">
     <div class="container">

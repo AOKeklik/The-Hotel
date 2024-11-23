@@ -125,7 +125,7 @@ class AdminPageController extends Controller
         $request->validate([
             "photo_title" => "nullable|string",
             "photo_heading" => "required|string",
-            "photo_status" => "nullable|in:Yes",
+            "photo_status" => "nullable|string|in:Yes",
         ]);
 
         $photo = Page::find(1);
@@ -150,7 +150,7 @@ class AdminPageController extends Controller
         $request->validate([
             "video_title" => "nullable|string",
             "video_heading" => "required|string",
-            "video_status" => "nullable|in:Yes",
+            "video_status" => "nullable|string|in:Yes",
         ]);
 
         $video = Page::find(1);
@@ -164,5 +164,55 @@ class AdminPageController extends Controller
         $video->save();
         
         return redirect()->back()->with("status","Video Galery has been updated successfully!");
+    }
+
+    public function edit_faq () {
+        $faq = Page::where("id",1)->select("faq_title","faq_heading","faq_status")->first();
+        return view("admin.faq2_edit",compact("faq"));
+    }
+
+    public function update_faq (Request $request) {
+        $request->validate([
+            "faq_title" => "nullable|string",
+            "faq_heading" => "required|string",
+            "faq_status" => "nullable|string|in:Yes",
+        ]);
+
+        $faq = Page::find(1);
+
+        if(!empty($request->faq_title))
+            $faq->faq_title = $request->faq_title;         
+
+        $faq->faq_heading = $request->faq_heading; 
+        $faq->faq_status = $request->faq_status == "Yes" ? 1 : 0;
+
+        $faq->update();
+
+        return redirect()->back()->with("status","Faq has been updated successfully!");
+    }
+
+    public function edit_blog () {
+        $blog = Page::where("id",1)->select("blog_title","blog_heading","blog_status")->first();
+        return view("admin.blog_edit",compact("blog"));
+    }
+
+    public function update_blog (Request $request) {
+        $request->validate([
+            "blog_title" => "nullable|string",
+            "blog_heading" => "required|string",
+            "blog_status" => "nullable|string|in:Yes",
+        ]);
+
+        $blog = Page::find(1);
+
+        if(!empty($request->blog_title))
+            $blog->blog_title = $request->blog_title;
+
+        $blog->blog_heading = $request->blog_heading;
+        $blog->blog_status = $request->blog_status == "Yes" ? 1 : 0;
+
+        $blog->update();
+
+        return redirect()->back()->with("status","Blog has been updated successfully!");
     }
 }

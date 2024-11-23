@@ -85,9 +85,11 @@
                                 </ul>
                             </li>
                         @endif
-                        <li class="nav-item">
-                            <a href="{{ route("front.blog") }}" class="nav-link">Blog</a>
-                        </li>
+                        @if($pages->blog_status == 1)
+                            <li class="nav-item">
+                                <a href="{{ route("front.blog") }}" class="nav-link">{{ $pages->blog_title }}</a>
+                            </li>
+                        @endif
                         @if($pages->contact_status == 1)
                             <li class="nav-item"><a href="{{ route("front.contact") }}" class="nav-link">{{ $pages->contact_title }}</a></li>
                         @endif

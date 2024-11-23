@@ -102,12 +102,16 @@ Route::prefix("admin")->group(function () {
     Route::put("page/photo/update", [AdminPageController::class, "update_photo"])->name("admin.page.photo.update")->middleware("admin:admin");
     Route::get("page/video/edit", [AdminPageController::class, "edit_video"])->name("admin.page.video.edit")->middleware("admin:admin");
     Route::put("page/video/update", [AdminPageController::class, "update_video"])->name("admin.page.video.update")->middleware("admin:admin");
+    Route::get("page/blog/edit", [AdminPageController::class, "edit_blog"])->name("admin.page.blog.edit")->middleware("admin:admin");
+    Route::put("page/blog/update", [AdminPageController::class, "update_blog"])->name("admin.page.blog.update")->middleware("admin:admin");
     Route::get("page/contact/edit", [AdminPageController::class, "edit_contact"])->name("admin.page.contact.edit")->middleware("admin:admin");
     Route::put("page/contact/update", [AdminPageController::class, "update_contact"])->name("admin.page.contact.update")->middleware("admin:admin");
     Route::get("page/terms/edit", [AdminPageController::class, "edit_terms"])->name("admin.page.terms.edit")->middleware("admin:admin");
     Route::put("page/terms/update", [AdminPageController::class, "update_terms"])->name("admin.page.terms.update")->middleware("admin:admin");
     Route::get("page/policy/edit", [AdminPageController::class, "edit_policy"])->name("admin.page.policy.edit")->middleware("admin:admin");
     Route::put("page/policy/update", [AdminPageController::class, "update_policy"])->name("admin.page.policy.update")->middleware("admin:admin");
+    Route::get("page/faq/edit",[AdminPageController::class, "edit_faq"])->name("admin.page.faq.edit")->middleware("admin:admin");
+    Route::put("page/faq/update", [AdminPageController::class, "update_faq"])->name("admin.page.faq.update")->middleware("admin:admin");
 });
 
 Route::prefix("/")->group( function () {

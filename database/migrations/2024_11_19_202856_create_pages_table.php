@@ -26,6 +26,10 @@ return new class extends Migration
             $table->text("video_heading");    
             $table->integer("video_status");
 
+            $table->text("blog_title")->nullable();
+            $table->text("blog_heading");
+            $table->integer("blog_status");
+
             $table->text("contact_title")->nullable();
             $table->text("contact_heading");
             $table->text("contact_content");
@@ -39,7 +43,11 @@ return new class extends Migration
             $table->text("policy_title")->nullable();
             $table->text("policy_heading");
             $table->text("policy_content");
-            $table->integer("policy_status");          
+            $table->integer("policy_status");  
+            
+            $table->text("faq_title")->nullable();
+            $table->text("faq_heading");
+            $table->text("faq_status");
             
             $table->timestamps();
         });
