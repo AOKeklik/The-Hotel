@@ -215,4 +215,72 @@ class AdminPageController extends Controller
 
         return redirect()->back()->with("status","Blog has been updated successfully!");
     }
+
+    public function edit_cart () {
+        $cart = Page::where("id",1)->select("cart_title","cart_heading","cart_status")->first();
+        return view("admin.cart2_edit",compact("cart"));
+    }
+
+    public function update_cart (Request $request) {
+        $request->validate([
+            "cart_title" => "nullable|string",
+            "cart_heading" => "required|string",
+            "cart_status" => "nullable|string|in:Yes",
+        ]);
+
+        $cart = Page::find(1);
+
+        if(!empty($request->cart_title))
+            $cart->cart_title = $request->cart_title;
+
+        $cart->cart_heading = $request->cart_heading;
+        $cart->cart_status = $request->cart_status == "Yes" ? 1 : 0;
+
+        $cart->update();
+
+        return redirect()->back()->with("status","Cart has been updated successfully!");
+    }
+
+    public function edit_checkout () {
+        $checkout = Page::where("id",1)->select("checkout_title","checkout_heading","checkout_status")->first();
+        return view("admin.checkout2_edit",compact("checkout"));
+    }
+
+    public function update_checkout (Request $request) {
+        $request->validate([
+            "checkout_title" => "nullable|string",
+            "checkout_heading" => "required|string",
+            "checkout_status" => "nullable|string|in:Yes",
+        ]);
+
+        $checkout = Page::find(1);
+
+        if(!empty($request->checkout_title))
+            $checkout->checkout_title = $request->checkout_title;
+
+        $checkout->checkout_heading = $request->checkout_heading;
+        $checkout->checkout_status = $request->checkout_status == "Yes" ? 1 : 0;
+
+        $checkout->update();
+        
+        return redirect()->back()->with("status","Checkout has been updated successfully!");
+    }
+
+    public function edit_payment () {
+        $payment = Page::where("id",1)->select("payment_heading")->first();
+        return view("admin.payment2_edit",compact("payment"));
+    }
+
+    public function update_payment (Request $request) {
+        $request->validate([
+            "payment_heading" => "required|string"
+        ]);
+
+        $payment = Page::find(1);
+        $payment->payment_heading = $request->payment_heading;
+
+        $payment->save();
+
+        return redirect()->back()->with("status","Payment has been updated seccessfully!");
+    }
 }

@@ -35,6 +35,14 @@ return new class extends Migration
             $table->text("contact_content");
             $table->integer("contact_status");  
 
+            $table->text("cart_title")->nullable();
+            $table->text("cart_heading");
+            $table->text("cart_status");
+            $table->text("checkout_title")->nullable();
+            $table->text("checkout_heading");
+            $table->text("checkout_status");
+            $table->text("payment_heading");
+
             $table->text("terms_title")->nullable();
             $table->text("terms_heading");
             $table->text("terms_content");

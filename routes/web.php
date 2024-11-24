@@ -106,6 +106,12 @@ Route::prefix("admin")->group(function () {
     Route::put("page/blog/update", [AdminPageController::class, "update_blog"])->name("admin.page.blog.update")->middleware("admin:admin");
     Route::get("page/contact/edit", [AdminPageController::class, "edit_contact"])->name("admin.page.contact.edit")->middleware("admin:admin");
     Route::put("page/contact/update", [AdminPageController::class, "update_contact"])->name("admin.page.contact.update")->middleware("admin:admin");
+    Route::get("page/cart/edit", [AdminPageController::class, "edit_cart"])->name("admin.page.cart.edit")->middleware("admin:admin");
+    Route::put("page/cart/update", [AdminPageController::class, "update_cart"])->name("admin.page.cart.update")->middleware("admin:admin");
+    Route::get("page/checkout/edit", [AdminPageController::class, "edit_checkout"])->name("admin.page.checkout.edit")->middleware("admin:admin");
+    Route::put("page/checkout/update", [AdminPageController::class, "update_checkout"])->name("admin.page.checkout.update")->middleware("admin:admin");
+    Route::get("page/payment/edit", [AdminPageController::class, "edit_payment"])->name("admin.page.payment.edit")->middleware("admin:admin");
+    Route::put("page/payment/update", [AdminPageController::class, "update_payment"])->name("admin.page.payment.update")->middleware("admin:admin");
     Route::get("page/terms/edit", [AdminPageController::class, "edit_terms"])->name("admin.page.terms.edit")->middleware("admin:admin");
     Route::put("page/terms/update", [AdminPageController::class, "update_terms"])->name("admin.page.terms.update")->middleware("admin:admin");
     Route::get("page/policy/edit", [AdminPageController::class, "edit_policy"])->name("admin.page.policy.edit")->middleware("admin:admin");

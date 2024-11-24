@@ -11,8 +11,12 @@
             </div>
             <div class="col-md-6 right-side">
                 <ul class="right">
-                    <li class="menu"><a href="cart.html">Cart</a></li>
-                    <li class="menu"><a href="checkout.html">Checkout</a></li>
+                    @if($pages->cart_status == 1) 
+                        <li class="menu"><a href="cart.html">{{ $pages->cart_title }}</a></li>
+                    @endif
+                    @if($pages->checkout_status == 1) 
+                        <li class="menu"><a href="checkout.html">{{ $pages->checkout_title }}</a></li>
+                    @endif
                     <li class="menu"><a href="signup.html">Sign Up</a></li>
                     <li class="menu"><a href="login.html">Login</a></li>
                 </ul>
