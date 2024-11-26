@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSlideController;
+use App\Http\Controllers\Admin\AdminSubscriberController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Front\AboutController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Front\GalleryController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PolicyController;
+use App\Http\Controllers\Front\SubscriberController;
 use App\Http\Controllers\Front\TermsController;
 use Illuminate\Support\Facades\Route;
 
@@ -95,6 +97,14 @@ Route::prefix("admin")->group(function () {
     Route::put("faq/update", [AdminFaqController::class, "update_faq"])->name("admin.faq.update")->middleware("admin:admin");
     Route::get("faq/delete/{faq_id}", [AdminFaqController::class, "delete_faq"])->name("admin.faq.delete")->middleware("admin:admin");
 
+    /* subscriber */
+    Route::get("subscribers", [AdminSubscriberController::class, "index"])->name("admin.subscribers")->middleware("admin:admin");
+    Route::get("subscriber/edit/{subscriber_id}", [AdminSubscriberController::class, "edit_subscriber"])->name("admin.subscriber.edit")->middleware("admin:admin");
+    Route::get("subscriber/email", [AdminSubscriberController::class, "email_subscriber"])->name("admin.subscriber.email")->middleware("admin:admin");
+    Route::put("subscriber/update", [AdminSubscriberController::class, "update_subscriber"])->name("admin.subscriber.update")->middleware("admin:admin");
+    Route::get("subscriber/delete/{subscriber_id}", [AdminSubscriberController::class, "delete_subscriber"])->name("admin.subscriber.delete")->middleware("admin:admin");
+    Route::post("subscriber/email/update", [AdminSubscriberController::class, "submit_subscriber"])->name("admin.subscriber.email.submit")->middleware("admin:admin");
+
     /* pages */
     Route::get("page/about/edit", [AdminPageController::class, "edit_about"])->name("admin.page.about.edit")->middleware("admin:admin");
     Route::put("page/about/update", [AdminPageController::class, "update_about"])->name("admin.page.about.update")->middleware("admin:admin");
@@ -129,6 +139,9 @@ Route::prefix("/")->group( function () {
 
     Route::get("blog", [BlogController::class, "index"])->name("front.blog");
     Route::get("blog/{post_id}", [BlogController::class, "post"])->name("front.blog.detail");
+
+    Route::post("subscriber/submit", [SubscriberController::class, "submit_subscriber"])->name("front.subscriber.submit");
+    Route::get("subscriber/verify/{email}/{token}", [SubscriberController::class, "verify_subscriber"])->name("front.subscriber.verify");
     
     Route::get("photos", [GalleryController::class, "photos"])->name("front.photos");
     Route::get("videos", [GalleryController::class, "videos"])->name("front.videos");

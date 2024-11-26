@@ -25,6 +25,9 @@
     </div>
 </div>
 
+@if(Session::has("status")) <p class="alert alert-success p-2">{{ Session::get("status") }}</p> @endif
+@if(Session::has("error")) <p class="alert alert-danger p-2">{{ Session::get("error") }}</p> @endif
+
 
 <div class="navbar-area" id="stickymenu">
 

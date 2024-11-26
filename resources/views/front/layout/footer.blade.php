@@ -81,12 +81,14 @@
                             <p>
                                 In order to get the latest news and other great items, please subscribe us here: 
                             </p>
-                            <form action="" method="post">
+                            <form>
                                 <div class="form-group">
-                                    <input type="text" name="" class="form-control">
+                                    <input type="text" name="email" class="form-control">
+                                    <p class="text-danger m-0 alert-error-email"></p>
+                                    <p class="text-success m-0 alert-success-email"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-primary" value="Subscribe Now">
+                                    <input onclick="handlerSubmitSubscriberForm(event)" type="submit" class="btn btn-primary" value="Subscribe Now">
                                 </div>
                             </form>
                         </div>
@@ -95,12 +97,54 @@
                 </div>
             </div>
         </div>
-        
         <div class="copyright"> Copyright 2022, ArefinDev. All Rights Reserved.</div>
-
         <div class="scroll-top"> <i class="fa fa-angle-up"></i> </div>
-
+        <div id="loader"></div>
         <script src="{{ asset('dist-front/js/custom.js') }}"></script>        
+        <script>
+            function handlerSubmitSubscriberForm (e) {
+                e.preventDefault()
+    
+                const form = e.target.closest("form")
+                const email = form.querySelector("input[name=email]")
+                const loader = document.getElementById("loader")
+    
+                if (!email) return
+    
+                const formData = new FormData()
+                formData.append("_token", "{{ csrf_token() }}")
+                formData.append("email",email.value.trim())
+
+                email.value = ''
+                loader.style.display = "block"    
+                email.nextElementSibling.innerHTML = ''            
+    
+                $.ajax({
+                    url: "{{ route('front.subscriber.submit') }}",
+                    type: "POST",
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: data => {
+                        
+                        // console.log(data)
+                        loader.style.display = "none"
+                        
+                        if (data.ok === false)
+                            Object.keys(data.error_message).forEach(msg => {
+                                message = document.querySelector(".alert-error-"+msg)
+                                if (!message) return
+                                message.textContent = data.error_message[msg]
+                            })
+    
+                        if (data.ok === true) {
+                            message = document.querySelector(".alert-success-email")
+                            message.textContent = data.message
+                        }    
+                    }
+                })
+            }
+        </script>
         @stack("scripts")
     </body>
 </html>
