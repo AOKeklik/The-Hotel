@@ -80,20 +80,14 @@
                 </ul>
             </li>
 
-            <li class="nav-item dropdown @if(Route::is("admin.subscribers")) active @endif">
-                <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Subscriber</span></a>
+            <li class="@if(Route::is("admin.subscribers")) active @endif"><a class="nav-link" href="{{ route("admin.subscribers") }}"><i class="fa fa-hand-o-right"></i> Subscribers</a></li>
+
+            <li class="nav-item dropdown @if(Request::is("admin/hotel/*")) active @endif">
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Hotel Section</span></a>
                 <ul class="dropdown-menu">
-                    <li class="@if(Route::is("admin.subscribers")) active @endif"><a class="nav-link" href="{{ route("admin.subscribers") }}"><i class="fa fa-angle-right"></i> Subscribers</a></li>
+                    <li class="@if(Route::is("admin.hotel.amenities")) active @endif"><a class="nav-link" href="{{ route("admin.hotel.amenities") }}"><i class="fa fa-angle-right"></i> Aminities</a></li>
                 </ul>
             </li>
-
-            <li class=""><a class="nav-link" href="setting.html"><i class="fa fa-hand-o-right"></i> <span>Setting</span></a></li>
-
-            <li class=""><a class="nav-link" href="form.html"><i class="fa fa-hand-o-right"></i> <span>Form</span></a></li>
-
-            <li class=""><a class="nav-link" href="table.html"><i class="fa fa-hand-o-right"></i> <span>Table</span></a></li>
-
-            <li class=""><a class="nav-link" href="invoice.html"><i class="fa fa-hand-o-right"></i> <span>Invoice</span></a></li>
 
         </ul>
     </aside>

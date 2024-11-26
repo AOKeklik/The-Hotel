@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAmenityController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminHomeController;
@@ -104,6 +105,14 @@ Route::prefix("admin")->group(function () {
     Route::put("subscriber/update", [AdminSubscriberController::class, "update_subscriber"])->name("admin.subscriber.update")->middleware("admin:admin");
     Route::get("subscriber/delete/{subscriber_id}", [AdminSubscriberController::class, "delete_subscriber"])->name("admin.subscriber.delete")->middleware("admin:admin");
     Route::post("subscriber/email/update", [AdminSubscriberController::class, "submit_subscriber"])->name("admin.subscriber.email.submit")->middleware("admin:admin");
+
+    /* hotel */
+    Route::get("hotel/amenities", [AdminAmenityController::class, "index"])->name("admin.hotel.amenities")->middleware("admin:admin");
+    Route::get("hotel/amenity/add", [AdminAmenityController::class, "add_amenity"])->name("admin.hotel.amenity.add")->middleware("admin:admin");
+    Route::get("hotel/amenity/edit/{amenity_id}", [AdminAmenityController::class, "edit_amenity"])->name("admin.hotel.amenity.edit")->middleware("admin:admin");
+    Route::get("hotel/amenity/delete/{amenity_id}", [AdminAmenityController::class, "delete_amenity"])->name("admin.hotel.amenity.delete")->middleware("admin:admin");
+    Route::post("hotel/amenity/store", [AdminAmenityController::class, "store_amenity"])->name("admin.hotel.amenity.store")->middleware("admin:admin");
+    Route::put("hotel/amenity/update", [AdminAmenityController::class, "update_amenity"])->name("admin.hotel.amenity.update")->middleware(("admin:admin"));
 
     /* pages */
     Route::get("page/about/edit", [AdminPageController::class, "edit_about"])->name("admin.page.about.edit")->middleware("admin:admin");
