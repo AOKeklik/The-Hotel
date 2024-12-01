@@ -11,11 +11,11 @@
             </div>
             <div class="col-md-6 right-side">
                 <ul class="right">
-                    @if($pages->cart_status == 1) 
-                        <li class="menu"><a href="cart.html">{{ $pages->cart_title }}</a></li>
+                    @if($provider_pages->cart_status == 1) 
+                        <li class="menu"><a href="cart.html">{{ $provider_pages->cart_title }}</a></li>
                     @endif
-                    @if($pages->checkout_status == 1) 
-                        <li class="menu"><a href="checkout.html">{{ $pages->checkout_title }}</a></li>
+                    @if($provider_pages->checkout_status == 1) 
+                        <li class="menu"><a href="checkout.html">{{ $provider_pages->checkout_title }}</a></li>
                     @endif
                     <li class="menu"><a href="signup.html">Sign Up</a></li>
                     <li class="menu"><a href="login.html">Login</a></li>
@@ -50,55 +50,47 @@
                         <li class="nav-item">
                             <a href="{{ route("front.index") }}" class="nav-link">Home</a>
                         </li>
-                        @if($pages->about_status == 1)
+                        @if($provider_pages->about_status == 1)
                             <li class="nav-item">
-                                <a href="{{ route("front.about") }}" class="nav-link">{{ $pages->about_title }}</a>
+                                <a href="{{ route("front.about") }}" class="nav-link">{{ $provider_pages->about_title }}</a>
                             </li>
                         @endif
-                        <li class="nav-item">
-                            <a href="javascript:void;" class="nav-link dropdown-toggle">Room & Suite</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="room-detail.html" class="nav-link">Regular Couple Bed</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="room-detail.html" class="nav-link">Delux Couple Bed</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="room-detail.html" class="nav-link">Regular Double Bed</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="room-detail.html" class="nav-link">Delux Double Bed</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="room-detail.html" class="nav-link">Premium Suite</a>
-                                </li>
-                            </ul>
-                        </li>
-                        @if ($pages->photo_status == 1 || $pages->video_status == 1)
+                        @if(count($provider_rooms) > 0)
+                            <li class="nav-item">
+                                <a href="javascript:void;" class="nav-link dropdown-toggle">Room & Suite</a>
+                                <ul class="dropdown-menu">
+                                    @foreach($provider_rooms as $provider_room)
+                                        <li class="nav-item">
+                                            <a href="{{ route("front.room",["room_id"=>$provider_room->id]) }}" class="nav-link">{{ $provider_room->name }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endif
+                        @if ($provider_pages->photo_status == 1 || $provider_pages->video_status == 1)
                             <li class="nav-item">
                                 <a href="javascript:void;" class="nav-link dropdown-toggle">Gallery</a>
                                 <ul class="dropdown-menu">
-                                    @if ($pages->photo_status == 1)
+                                    @if ($provider_pages->photo_status == 1)
                                         <li class="nav-item">
-                                            <a href="{{ route("front.photos") }}" class="nav-link">{{ $pages->photo_title }}</a>
+                                            <a href="{{ route("front.photos") }}" class="nav-link">{{ $provider_pages->photo_title }}</a>
                                         </li>
                                     @endif
-                                    @if ($pages->video_status == 1)
+                                    @if ($provider_pages->video_status == 1)
                                         <li class="nav-item">
-                                            <a href="{{ route("front.videos") }}" class="nav-link">{{ $pages->video_title }}</a>
+                                            <a href="{{ route("front.videos") }}" class="nav-link">{{ $provider_pages->video_title }}</a>
                                         </li>
                                     @endif
                                 </ul>
                             </li>
                         @endif
-                        @if($pages->blog_status == 1)
+                        @if($provider_pages->blog_status == 1)
                             <li class="nav-item">
-                                <a href="{{ route("front.blog") }}" class="nav-link">{{ $pages->blog_title }}</a>
+                                <a href="{{ route("front.blog") }}" class="nav-link">{{ $provider_pages->blog_title }}</a>
                             </li>
                         @endif
-                        @if($pages->contact_status == 1)
-                            <li class="nav-item"><a href="{{ route("front.contact") }}" class="nav-link">{{ $pages->contact_title }}</a></li>
+                        @if($provider_pages->contact_status == 1)
+                            <li class="nav-item"><a href="{{ route("front.contact") }}" class="nav-link">{{ $provider_pages->contact_title }}</a></li>
                         @endif
                     </ul>
                 </div>

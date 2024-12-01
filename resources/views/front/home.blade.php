@@ -87,139 +87,29 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
-                <div class="inner">
-                    <div class="photo">
-                        <img src="uploads/1.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h2><a href="">Standard Couple Bed</a></h2>
-                        <div class="price">
-                            $100/night
+            @foreach($rooms as $room)
+                <div class="col-md-3">
+                    <div class="inner">
+                        <div class="photo">
+                            <img src="{{ asset("uploads/room/$room->featured_photo") }}" alt="">
                         </div>
-                        <div class="button">
-                            <a href="room-detail.html" class="btn btn-primary">See Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="inner">
-                    <div class="photo">
-                        <img src="uploads/2.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h2><a href="">Standard Couple Bed</a></h2>
-                        <div class="price">
-                            $100/night
-                        </div>
-                        <div class="button">
-                            <a href="room-detail.html" class="btn btn-primary">See Detail</a>
+                        <div class="text">
+                            <h2><a href="">{{ $room->name }}</a></h2>
+                            <div class="price">
+                                ${{ $room->price }}/night
+                            </div>
+                            <div class="button">
+                                <a href="{{ route("front.room",["room_id"=>$room->id]) }}" class="btn btn-primary">See Detail</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="inner">
-                    <div class="photo">
-                        <img src="uploads/3.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h2><a href="">Standard Couple Bed</a></h2>
-                        <div class="price">
-                            $100/night
-                        </div>
-                        <div class="button">
-                            <a href="room-detail.html" class="btn btn-primary">See Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="inner">
-                    <div class="photo">
-                        <img src="uploads/4.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h2><a href="">Standard Couple Bed</a></h2>
-                        <div class="price">
-                            $100/night
-                        </div>
-                        <div class="button">
-                            <a href="room-detail.html" class="btn btn-primary">See Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="inner">
-                    <div class="photo">
-                        <img src="uploads/5.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h2><a href="">Standard Couple Bed</a></h2>
-                        <div class="price">
-                            $100/night
-                        </div>
-                        <div class="button">
-                            <a href="room-detail.html" class="btn btn-primary">See Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="inner">
-                    <div class="photo">
-                        <img src="uploads/6.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h2><a href="">Standard Couple Bed</a></h2>
-                        <div class="price">
-                            $100/night
-                        </div>
-                        <div class="button">
-                            <a href="room-detail.html" class="btn btn-primary">See Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="inner">
-                    <div class="photo">
-                        <img src="uploads/7.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h2><a href="">Standard Couple Bed</a></h2>
-                        <div class="price">
-                            $100/night
-                        </div>
-                        <div class="button">
-                            <a href="room-detail.html" class="btn btn-primary">See Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="inner">
-                    <div class="photo">
-                        <img src="uploads/1.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h2><a href="">Standard Couple Bed</a></h2>
-                        <div class="price">
-                            $100/night
-                        </div>
-                        <div class="button">
-                            <a href="room-detail.html" class="btn btn-primary">See Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="big-button">
-                    <a href="" class="btn btn-primary">See All Rooms</a>
+                    <a href="{{ route("front.rooms") }}" class="btn btn-primary">See All Rooms</a>
                 </div>
             </div>
         </div>

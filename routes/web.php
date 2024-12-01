@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminRoomController;
 use App\Http\Controllers\Admin\AdminSlideController;
 use App\Http\Controllers\Admin\AdminSubscriberController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Front\GalleryController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PolicyController;
+use App\Http\Controllers\Front\RoomController;
 use App\Http\Controllers\Front\SubscriberController;
 use App\Http\Controllers\Front\TermsController;
 use Illuminate\Support\Facades\Route;
@@ -106,13 +108,26 @@ Route::prefix("admin")->group(function () {
     Route::get("subscriber/delete/{subscriber_id}", [AdminSubscriberController::class, "delete_subscriber"])->name("admin.subscriber.delete")->middleware("admin:admin");
     Route::post("subscriber/email/update", [AdminSubscriberController::class, "submit_subscriber"])->name("admin.subscriber.email.submit")->middleware("admin:admin");
 
-    /* hotel */
+    /* amenity */
     Route::get("hotel/amenities", [AdminAmenityController::class, "index"])->name("admin.hotel.amenities")->middleware("admin:admin");
     Route::get("hotel/amenity/add", [AdminAmenityController::class, "add_amenity"])->name("admin.hotel.amenity.add")->middleware("admin:admin");
     Route::get("hotel/amenity/edit/{amenity_id}", [AdminAmenityController::class, "edit_amenity"])->name("admin.hotel.amenity.edit")->middleware("admin:admin");
     Route::get("hotel/amenity/delete/{amenity_id}", [AdminAmenityController::class, "delete_amenity"])->name("admin.hotel.amenity.delete")->middleware("admin:admin");
     Route::post("hotel/amenity/store", [AdminAmenityController::class, "store_amenity"])->name("admin.hotel.amenity.store")->middleware("admin:admin");
     Route::put("hotel/amenity/update", [AdminAmenityController::class, "update_amenity"])->name("admin.hotel.amenity.update")->middleware(("admin:admin"));
+
+    /* room */
+    Route::get("hotel/rooms", [AdminRoomController::class, "index"])->name("admin.hotel.rooms")->middleware("admin:admin");
+    Route::get("hotel/room/add", [AdminRoomController::class, "add_room"])->name("admin.hotel.room.add")->middleware("admin:admin");
+    Route::get("hotel/room/edit/{room_id}", [AdminRoomController::class, "edit_room"])->name("admin.hotel.room.edit")->middleware("admin:admin");
+    Route::get("hotel/room/delete/{room_id}", [AdminRoomController::class, "delete_room"])->name("admin.hotel.room.delete")->middleware("admin:admin");
+    Route::post("hotel/room/store",[AdminRoomController::class, "store_room"])->name("admin.hotel.room.store")->middleware("admin:admin");
+    Route::put("hotel/room/update", [AdminRoomController::class, "update_room"])->name("admin.hotel.room.update")->middleware("admin:admin");
+    Route::get("hotel/room/gallery/{room_id}", [AdminRoomController::class, "gallery_room"])->name("admin.hotel.room.gallery")->middleware("admin:admin");
+    Route::post("hotel/room/gallery/store", [AdminRoomController::class, "store_gallery_room"])->name("admin.hotel.room.gallery.store")->middleware("admin:admin");
+    Route::get("hote/room/gallery/edit/{gallery_id}", [AdminRoomController::class, "edit_gallery_room"])->name("admin.hotel.room.gallery.edit")->middleware("admin:admin");
+    Route::get("hotel/room/gallery/delete/{gallery_id}", [AdminRoomController::class, "delete_gallery_room"])->name("admin.hotel.room.gallery.delete")->middleware("admin:admin");
+    Route::put("hotel/room/gallery/update",[AdminRoomController::class, "update_gallery_room"])->name("admin.hotel.room.gallery.update")->middleware("admin:admin");
 
     /* pages */
     Route::get("page/about/edit", [AdminPageController::class, "edit_about"])->name("admin.page.about.edit")->middleware("admin:admin");
@@ -151,6 +166,9 @@ Route::prefix("/")->group( function () {
 
     Route::post("subscriber/submit", [SubscriberController::class, "submit_subscriber"])->name("front.subscriber.submit");
     Route::get("subscriber/verify/{email}/{token}", [SubscriberController::class, "verify_subscriber"])->name("front.subscriber.verify");
+
+    Route::get("rooms", [RoomController::class, "index"])->name("front.rooms");
+    Route::get("room/{room_id}", [RoomController::class, "room"])->name("front.room");
     
     Route::get("photos", [GalleryController::class, "photos"])->name("front.photos");
     Route::get("videos", [GalleryController::class, "videos"])->name("front.videos");

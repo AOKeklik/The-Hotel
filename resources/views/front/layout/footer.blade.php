@@ -6,14 +6,14 @@
                             <h2 class="heading">Site Links</h2>
                             <ul class="useful-links">
                                 <li><a href="rooms.html">Rooms & Suites</a></li>
-                                @if($pages->photo_status == 1)
-                                    <li><a href="{{ route("front.photos") }}">{{ $pages->photo_title }}</a></li>
+                                @if($provider_pages->photo_status == 1)
+                                    <li><a href="{{ route("front.photos") }}">{{ $provider_pages->photo_title }}</a></li>
                                 @endif
-                                @if($pages->blog_status == 1)
-                                    <li><a href="{{ route("front.blog") }}">{{ $pages->blog_title }}</a></li>
+                                @if($provider_pages->blog_status == 1)
+                                    <li><a href="{{ route("front.blog") }}">{{ $provider_pages->blog_title }}</a></li>
                                 @endif
-                                @if($pages->contact_status == 1)
-                                    <li><a href="{{ route("front.contact") }}">{{ $pages->contact_title }}</a></li>
+                                @if($provider_pages->contact_status == 1)
+                                    <li><a href="{{ route("front.contact") }}">{{ $provider_pages->contact_title }}</a></li>
                                 @endif
                             </ul>
                         </div>
@@ -23,14 +23,14 @@
                             <h2 class="heading">Useful Links</h2>
                             <ul class="useful-links">
                                 <li><a href="{{ route("front.index") }}">Home</a></li>
-                                @if($pages->terms_status == 1)
-                                    <li><a href="{{ route("front.terms") }}">{{ $pages->terms_title }}</a></li>
+                                @if($provider_pages->terms_status == 1)
+                                    <li><a href="{{ route("front.terms") }}">{{ $provider_pages->terms_title }}</a></li>
                                 @endif
-                                @if($pages->policy_status == 1)
-                                    <li><a href="{{ route("front.policy") }}">{{ $pages->policy_title }}</a></li>
+                                @if($provider_pages->policy_status == 1)
+                                    <li><a href="{{ route("front.policy") }}">{{ $provider_pages->policy_title }}</a></li>
                                 @endif
-                                @if($pages->faq_status == 1)
-                                    <li><a href="{{ route("front.faq") }}">{{ $pages->faq_title }}</a></li>
+                                @if($provider_pages->faq_status == 1)
+                                    <li><a href="{{ route("front.faq") }}">{{ $provider_pages->faq_title }}</a></li>
                                 @endif
                             </ul>
                         </div>

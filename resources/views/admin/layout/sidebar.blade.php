@@ -86,6 +86,8 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Hotel Section</span></a>
                 <ul class="dropdown-menu">
                     <li class="@if(Route::is("admin.hotel.amenities")) active @endif"><a class="nav-link" href="{{ route("admin.hotel.amenities") }}"><i class="fa fa-angle-right"></i> Aminities</a></li>
+                    <li class="@if(Route::is("admin.hotel.rooms")) active @endif"><a class="nav-link" href="{{ route("admin.hotel.rooms") }}"><i class="fa fa-angle-right"></i> Rooms</a></li>
+                    <li class="@if(Route::is("admin.hotel.room.add")) active @endif"><a class="nav-link" href="{{ route("admin.hotel.room.add") }}"><i class="fa fa-angle-right"></i> Add Room</a></li>
                 </ul>
             </li>
 
