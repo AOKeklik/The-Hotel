@@ -5,7 +5,9 @@
                         <div class="item">
                             <h2 class="heading">Site Links</h2>
                             <ul class="useful-links">
-                                <li><a href="rooms.html">Rooms & Suites</a></li>
+                                @if($provider_pages->room_status == 1)
+                                    <li><a href="{{ route("front.rooms") }}">{{ $provider_pages->room_heading }}</a></li>
+                                @endif
                                 @if($provider_pages->photo_status == 1)
                                     <li><a href="{{ route("front.photos") }}">{{ $provider_pages->photo_heading }}</a></li>
                                 @endif

@@ -1,7 +1,7 @@
 @extends("admin.layout.app")
 @section("title","Add Amenities")
 @section("heading","Add Amenities")
-@section("link",route("admin.index"))
+@section("link",route("admin.rooms"))
 @section("button")
     <div class="ml-auto">
         <a href="{{ route("admin.hotel.amenities") }}" class="btn btn-primary"><i class="fa fa-eye"></i> Aminities</a>

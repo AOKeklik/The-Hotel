@@ -2,7 +2,6 @@
 
 <div id="app">
     <div class="main-wrapper">
-
         <div class="navbar-bg"></div>
         <nav class="navbar navbar-expand-lg main-navbar">
             <form class="form-inline mr-auto">
@@ -15,9 +14,11 @@
                 <li class="nav-link">
                     <a href="@yield("link", route('front.index'))" target="_blank" class="btn btn-warning">Front End</a>
                 </li>
-                <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                    <img alt="image" src="{{ asset('uploads/user.jpg') }}" class="rounded-circle mr-1">
-                    <div class="d-sm-none d-lg-inline-block">{{ Auth::guard("admin")->user()->name }}</div></a>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                        <img alt="image" src="{{ asset('uploads/user.jpg') }}" class="rounded-circle mr-1">
+                        <div class="d-sm-none d-lg-inline-block">{{ Auth::guard("admin")->user()->name }}</div>
+                    </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="{{ route('admin.profile') }}" class="dropdown-item has-icon">
                             <i class="fa fa-user"></i> Edit Profile

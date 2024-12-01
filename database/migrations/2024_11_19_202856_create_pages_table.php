@@ -48,6 +48,9 @@ return new class extends Migration
         
             $table->text("faq_heading");
             $table->text("faq_status");
+
+            $table->text("room_heading");
+            $table->integer("room_status");
             
             $table->timestamps();
         });

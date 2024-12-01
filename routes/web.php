@@ -27,7 +27,7 @@ use App\Http\Controllers\Front\TermsController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("admin")->group(function () {
-    Route::get("/home", [AdminHomeController::class, "index"])->name("admin.index")->middleware("admin:admin");
+    Route::get("home", [AdminHomeController::class, "index"])->name("admin.index")->middleware("admin:admin");
     
     /* login */
     Route::get("login", [AdminLoginController::class, "index"])->name("admin.login");
@@ -132,6 +132,8 @@ Route::prefix("admin")->group(function () {
     /* pages */
     Route::get("page/about/edit", [AdminPageController::class, "edit_about"])->name("admin.page.about.edit")->middleware("admin:admin");
     Route::put("page/about/update", [AdminPageController::class, "update_about"])->name("admin.page.about.update")->middleware("admin:admin");
+    Route::get("page/rooms/edit", [AdminPageController::class, "edit_rooms"])->name("admin.page.rooms.edit")->middleware("admin:admin");
+    Route::put("page/rooms/update", [AdminPageController::class, "update_rooms"])->name("admin.page.rooms.update")->middleware("admin:admin");
     Route::get("page/photo/edit", [AdminPageController::class, "edit_photo"])->name("admin.page.photo.edit")->middleware("admin:admin");
     Route::put("page/photo/update", [AdminPageController::class, "update_photo"])->name("admin.page.photo.update")->middleware("admin:admin");
     Route::get("page/video/edit", [AdminPageController::class, "edit_video"])->name("admin.page.video.edit")->middleware("admin:admin");

@@ -244,4 +244,28 @@ class AdminPageController extends Controller
 
         return redirect()->back()->with("status","Payment has been updated seccessfully!");
     }
+
+    public function edit_rooms () {
+        $room = Page::where("id",1)->select("room_heading","room_status")->first();
+        return view("admin.rooms2",compact("room"));
+    }
+
+    public function update_rooms (Request $request) {
+        $request->validate([
+            "room_heading" => "required|string",
+            "room_status" => "nullable|string|in:Yes",
+        ]);
+
+        $room = Page::find(1);
+
+        if(!$room)
+            return redirect()->back()->with("error","Room not found!");
+
+        $room->room_heading = $request->room_heading;
+        $room->room_status = $request->room_status == "Yes" ? 1 : 0;
+
+        $room->update();
+
+        return redirect()->back()->with("status","Room page has been updated successfully!");
+    }
 }

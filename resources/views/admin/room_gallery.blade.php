@@ -1,7 +1,7 @@
 @extends("admin.layout.app")
 @section("title","Room Gallery")
 @section("heading",$room->name." Gallery")
-@section("link",route("front.index"))
+@section("link",route("front.room",["room_id"=>$room->id]))
 @section("button")
     <div class="ml-auto">
         <a href="{{ route("admin.hotel.rooms") }}" class="btn btn-primary"><i class="fa fa-eye"></i> Rooms</a>
