@@ -7,13 +7,13 @@
                             <ul class="useful-links">
                                 <li><a href="rooms.html">Rooms & Suites</a></li>
                                 @if($provider_pages->photo_status == 1)
-                                    <li><a href="{{ route("front.photos") }}">{{ $provider_pages->photo_title }}</a></li>
+                                    <li><a href="{{ route("front.photos") }}">{{ $provider_pages->photo_heading }}</a></li>
                                 @endif
                                 @if($provider_pages->blog_status == 1)
-                                    <li><a href="{{ route("front.blog") }}">{{ $provider_pages->blog_title }}</a></li>
+                                    <li><a href="{{ route("front.blog") }}">{{ $provider_pages->blog_heading }}</a></li>
                                 @endif
                                 @if($provider_pages->contact_status == 1)
-                                    <li><a href="{{ route("front.contact") }}">{{ $provider_pages->contact_title }}</a></li>
+                                    <li><a href="{{ route("front.contact") }}">{{ $provider_pages->contact_heading }}</a></li>
                                 @endif
                             </ul>
                         </div>
@@ -24,13 +24,13 @@
                             <ul class="useful-links">
                                 <li><a href="{{ route("front.index") }}">Home</a></li>
                                 @if($provider_pages->terms_status == 1)
-                                    <li><a href="{{ route("front.terms") }}">{{ $provider_pages->terms_title }}</a></li>
+                                    <li><a href="{{ route("front.terms") }}">{{ $provider_pages->terms_heading }}</a></li>
                                 @endif
                                 @if($provider_pages->policy_status == 1)
-                                    <li><a href="{{ route("front.policy") }}">{{ $provider_pages->policy_title }}</a></li>
+                                    <li><a href="{{ route("front.policy") }}">{{ $provider_pages->policy_heading }}</a></li>
                                 @endif
                                 @if($provider_pages->faq_status == 1)
-                                    <li><a href="{{ route("front.faq") }}">{{ $provider_pages->faq_title }}</a></li>
+                                    <li><a href="{{ route("front.faq") }}">{{ $provider_pages->faq_heading }}</a></li>
                                 @endif
                             </ul>
                         </div>

@@ -15,16 +15,12 @@ class AdminPageController extends Controller
 
     public function update_about (Request $request) {
         $request->validate([
-            "about_title" => "nullable|string",
             "about_heading" => "required|string",
             "about_content" => "required|string",
             "about_status" => "nullable|string|in:Yes",
         ]);
 
         $about = Page::find(1);
-
-        if(!empty($request->about_title))
-            $about->about_title = $request->about_title;
 
         $about->about_heading = $request->about_heading;
         $about->about_content = $request->about_content;
@@ -42,16 +38,12 @@ class AdminPageController extends Controller
 
     public function update_terms (Request $request) {
         $request->validate([
-            "terms_title" => "nullable|string",
             "terms_heading" => "required|string",
             "terms_content" => "required|string",
             "terms_status" => "nullable|string|in:Yes",
         ]);
 
         $terms = Page::find(1);
-
-        if(!empty($request->terms_title))
-            $terms->terms_title = $request->terms_title;
 
         $terms->terms_heading = $request->terms_heading;
         $terms->terms_content = $request->terms_content;
@@ -63,22 +55,18 @@ class AdminPageController extends Controller
     }
 
     public function edit_policy () {
-        $policy = Page::where("id",1)->select("policy_title","policy_heading","policy_content","policy_status")->first();
+        $policy = Page::where("id",1)->select("policy_heading","policy_content","policy_status")->first();
         return view("admin.policy_edit",compact("policy"));
     }
 
     public function update_policy (Request $request) {
         $request->validate([
-            "policy_title" => "nullable|string",
             "policy_heading" => "required|string",
             "policy_content" => "required|string",
             "policy_status" => "nullable|string|in:Yes",
         ]);
 
         $policy = Page::find(1);
-
-        if(!empty($request->policy_title))
-            $policy->policy_title = $request->policy_title;
 
         $policy->policy_heading = $request->policy_heading;
         $policy->policy_content = $request->policy_content;
@@ -90,22 +78,18 @@ class AdminPageController extends Controller
     }
 
     public function edit_contact () {
-        $contact = Page::where("id",1)->select("contact_title","contact_heading","contact_content","contact_status")->first();
+        $contact = Page::where("id",1)->select("contact_heading","contact_content","contact_status")->first();
         return view("admin.contact_edit",compact("contact"));
     }
 
     public function update_contact (Request $request) {
         $request->validate([
-            "contact_title" => "nullable|string",
             "contact_heading" => "required|string",
             "contact_content" => "required|string",
             "contact_status" => "nullable|string|in:Yes",
         ]);
 
         $contact = Page::find(1);
-
-        if (!empty($request->contact_title))
-            $contact->contact_title = $request->contact_title;
 
         $contact->contact_heading = $request->contact_heading;
         $contact->contact_content = $request->contact_content;
@@ -117,21 +101,18 @@ class AdminPageController extends Controller
     }
 
     public function edit_photo () {
-        $photo = Page::where("id",1)->select("photo_title","photo_heading","photo_status")->first();
+        $photo = Page::where("id",1)->select("photo_heading","photo_status")->first();
         return view("admin.photo2_edit",compact("photo"));
     }
 
     public function update_photo (Request $request) {
         $request->validate([
-            "photo_title" => "nullable|string",
             "photo_heading" => "required|string",
             "photo_status" => "nullable|string|in:Yes",
         ]);
 
         $photo = Page::find(1);
 
-        if(!empty($request->photo_title))
-            $photo->photo_title = $request->photo_title;
 
         $photo->photo_heading = $request->photo_heading;
         $photo->photo_status = $request->photo_status == "Yes" ? 1 : 0;
@@ -142,21 +123,17 @@ class AdminPageController extends Controller
     }
 
     public function edit_video () {
-        $video = Page::where("id",1)->select("video_title","video_heading","video_status")->first();
+        $video = Page::where("id",1)->select("video_heading","video_status")->first();
         return view("admin.video2_edit",compact("video"));
     }
 
     public function update_video (Request $request) {
         $request->validate([
-            "video_title" => "nullable|string",
             "video_heading" => "required|string",
             "video_status" => "nullable|string|in:Yes",
         ]);
 
-        $video = Page::find(1);
-
-        if(!empty($request->video_title))
-            $video->video_title = $request->video_title;        
+        $video = Page::find(1);    
 
         $video->video_heading = $request->video_heading;
         $video->video_status = $request->video_status == "Yes" ? 1 : 0;
@@ -167,21 +144,17 @@ class AdminPageController extends Controller
     }
 
     public function edit_faq () {
-        $faq = Page::where("id",1)->select("faq_title","faq_heading","faq_status")->first();
+        $faq = Page::where("id",1)->select("faq_heading","faq_status")->first();
         return view("admin.faq2_edit",compact("faq"));
     }
 
     public function update_faq (Request $request) {
         $request->validate([
-            "faq_title" => "nullable|string",
             "faq_heading" => "required|string",
             "faq_status" => "nullable|string|in:Yes",
         ]);
 
-        $faq = Page::find(1);
-
-        if(!empty($request->faq_title))
-            $faq->faq_title = $request->faq_title;         
+        $faq = Page::find(1);       
 
         $faq->faq_heading = $request->faq_heading; 
         $faq->faq_status = $request->faq_status == "Yes" ? 1 : 0;
@@ -192,21 +165,17 @@ class AdminPageController extends Controller
     }
 
     public function edit_blog () {
-        $blog = Page::where("id",1)->select("blog_title","blog_heading","blog_status")->first();
+        $blog = Page::where("id",1)->select("blog_heading","blog_status")->first();
         return view("admin.blog_edit",compact("blog"));
     }
 
     public function update_blog (Request $request) {
         $request->validate([
-            "blog_title" => "nullable|string",
             "blog_heading" => "required|string",
             "blog_status" => "nullable|string|in:Yes",
         ]);
 
         $blog = Page::find(1);
-
-        if(!empty($request->blog_title))
-            $blog->blog_title = $request->blog_title;
 
         $blog->blog_heading = $request->blog_heading;
         $blog->blog_status = $request->blog_status == "Yes" ? 1 : 0;
@@ -217,21 +186,17 @@ class AdminPageController extends Controller
     }
 
     public function edit_cart () {
-        $cart = Page::where("id",1)->select("cart_title","cart_heading","cart_status")->first();
+        $cart = Page::where("id",1)->select("cart_heading","cart_status")->first();
         return view("admin.cart2_edit",compact("cart"));
     }
 
     public function update_cart (Request $request) {
         $request->validate([
-            "cart_title" => "nullable|string",
             "cart_heading" => "required|string",
             "cart_status" => "nullable|string|in:Yes",
         ]);
 
         $cart = Page::find(1);
-
-        if(!empty($request->cart_title))
-            $cart->cart_title = $request->cart_title;
 
         $cart->cart_heading = $request->cart_heading;
         $cart->cart_status = $request->cart_status == "Yes" ? 1 : 0;
@@ -242,21 +207,17 @@ class AdminPageController extends Controller
     }
 
     public function edit_checkout () {
-        $checkout = Page::where("id",1)->select("checkout_title","checkout_heading","checkout_status")->first();
+        $checkout = Page::where("id",1)->select("checkout_heading","checkout_status")->first();
         return view("admin.checkout2_edit",compact("checkout"));
     }
 
     public function update_checkout (Request $request) {
         $request->validate([
-            "checkout_title" => "nullable|string",
             "checkout_heading" => "required|string",
             "checkout_status" => "nullable|string|in:Yes",
         ]);
 
         $checkout = Page::find(1);
-
-        if(!empty($request->checkout_title))
-            $checkout->checkout_title = $request->checkout_title;
 
         $checkout->checkout_heading = $request->checkout_heading;
         $checkout->checkout_status = $request->checkout_status == "Yes" ? 1 : 0;

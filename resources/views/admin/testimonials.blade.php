@@ -1,5 +1,5 @@
 @extends("admin.layout.app")
-@section("tittle","Testimonials")
+@section("title","Testimonials")
 @section("heading","Testimonials")
 @section("button")
     <div class="ml-auto">

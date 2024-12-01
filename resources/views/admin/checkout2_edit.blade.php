@@ -19,11 +19,6 @@
                         @csrf
                         @method("PUT")
                         <div class="form-group mb-3">
-                            <label>Checkout Title</label>
-                            <input type="text" class="form-control" name="checkout_title" value="{{ $checkout->checkout_title }}">
-                            @error("checkout_title") <p class="text-danger m-0">{{ $message }}</p> @enderror
-                        </div>
-                        <div class="form-group mb-3">
                             <label>Checkout Heading</label>
                             <input type="text" class="form-control" name="checkout_heading" value="{{ $checkout->checkout_heading }}">
                             @error("checkout_heading") <p class="text-danger m-0">{{ $message }}</p> @enderror

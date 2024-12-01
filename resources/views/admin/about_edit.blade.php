@@ -19,11 +19,6 @@
                         @csrf
                         @method("PUT")
                         <div class="form-group mb-3">
-                            <label>About Title *</label>
-                            <input type="text" class="form-control" name="about_title" value="{{ $about->about_title }}">
-                            @error("about_title") <p class="text-danger m-0">{{ $message }}</p> @enderror
-                        </div>
-                        <div class="form-group mb-3">
                             <label>About Heading *</label>
                             <input type="text" class="form-control" name="about_heading" value="{{ $about->about_heading }}">
                             @error("about_heading") <p class="text-danger m-0">{{ $message }}</p> @enderror

@@ -19,11 +19,6 @@
                         @csrf
                         @method("PUT")
                         <div class="form-group mb-3">
-                            <label>Policy Title</label>
-                            <input type="text" class="form-control" name="policy_title" value="{{ $policy->policy_title }}">
-                            @error("policy_title") <p class="text-danger p-1">{{ $message }}</p> @enderror
-                        </div>
-                        <div class="form-group mb-3">
                             <label>Policy Heading *</label>
                             <input type="text" class="form-control" name="policy_heading" value="{{ $policy->policy_heading }}">
                             @error("policy_heading") <p class="text-danger p-1">{{ $message }}</p> @enderror

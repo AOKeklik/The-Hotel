@@ -19,11 +19,6 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group mb-3">
-                            <label>Cart Title</label>
-                            <input type="text" class="form-control" name="cart_title" value="{{ $cart->cart_title }}">
-                            @error("cart_title") <p class="text-danger m-0">{{ $message }}</p> @enderror
-                        </div>
-                        <div class="form-group mb-3">
                             <label>Cart Heading</label>
                             <input type="text" class="form-control" name="cart_heading" value="{{ $cart->cart_heading }}">
                             @error("cart_heading") <p class="text-danger m-0">{{ $message }}</p> @enderror

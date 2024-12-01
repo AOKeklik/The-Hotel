@@ -19,11 +19,6 @@
                         @csrf
                         @method("PUT")
                         <div class="form-group mb-3">
-                            <label>Terms Title</label>
-                            <input type="text" class="form-control" name="terms_title" value="{{ $page->terms_title }}">
-                        </div>
-                        @error("terms_title") <p class="text-danger m-0">{{ $message }}</p> @enderror
-                        <div class="form-group mb-3">
                             <label>Terms Heading</label>
                             <input type="text" class="form-control" name="terms_heading" value="{{ $page->terms_heading }}">
                         </div>
@@ -39,7 +34,7 @@
                                 <input @if($page->terms_status == 1) checked @endif type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="terms_status" value="Yes">
                             </div>
                         </div>
-                        @error("terms_title") <p class="text-danger m-0">{{ $message }}</p> @enderror
+                        @error("terms_status") <p class="text-danger m-0">{{ $message }}</p> @enderror
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>

@@ -19,11 +19,6 @@
                         @csrf
                         @method("PUT")
                         <div class="form-group mb-3">
-                            <label>Video Title</label>
-                            <input type="text" class="form-control" name="video_title" value="{{ $video->video_title }}">
-                            @error("video_title") <p class="text-danger m-0">{{ $message }}</p> @enderror
-                        </div>
-                        <div class="form-group mb-3">
                             <label>Video Heading</label>
                             <input type="text" class="form-control" name="video_heading" value="{{ $video->video_heading }}">
                             @error("video_heading") <p class="text-danger m-0">{{ $message }}</p> @enderror

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
     public function index () {
-        $contact = Page::where("id",1)->select("contact_title","contact_heading","contact_content")->first();
+        $contact = Page::where("id",1)->select("contact_heading","contact_content")->first();
         return view("front.contact",compact("contact"));
     }
 

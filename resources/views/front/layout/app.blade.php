@@ -12,10 +12,10 @@
             <div class="col-md-6 right-side">
                 <ul class="right">
                     @if($provider_pages->cart_status == 1) 
-                        <li class="menu"><a href="cart.html">{{ $provider_pages->cart_title }}</a></li>
+                        <li class="menu"><a href="cart.html">{{ $provider_pages->cart_heading }}</a></li>
                     @endif
                     @if($provider_pages->checkout_status == 1) 
-                        <li class="menu"><a href="checkout.html">{{ $provider_pages->checkout_title }}</a></li>
+                        <li class="menu"><a href="checkout.html">{{ $provider_pages->checkout_heading }}</a></li>
                     @endif
                     <li class="menu"><a href="signup.html">Sign Up</a></li>
                     <li class="menu"><a href="login.html">Login</a></li>
@@ -52,7 +52,7 @@
                         </li>
                         @if($provider_pages->about_status == 1)
                             <li class="nav-item">
-                                <a href="{{ route("front.about") }}" class="nav-link">{{ $provider_pages->about_title }}</a>
+                                <a href="{{ route("front.about") }}" class="nav-link">{{ $provider_pages->about_heading }}</a>
                             </li>
                         @endif
                         @if(count($provider_rooms) > 0)
@@ -73,12 +73,12 @@
                                 <ul class="dropdown-menu">
                                     @if ($provider_pages->photo_status == 1)
                                         <li class="nav-item">
-                                            <a href="{{ route("front.photos") }}" class="nav-link">{{ $provider_pages->photo_title }}</a>
+                                            <a href="{{ route("front.photos") }}" class="nav-link">{{ $provider_pages->photo_heading }}</a>
                                         </li>
                                     @endif
                                     @if ($provider_pages->video_status == 1)
                                         <li class="nav-item">
-                                            <a href="{{ route("front.videos") }}" class="nav-link">{{ $provider_pages->video_title }}</a>
+                                            <a href="{{ route("front.videos") }}" class="nav-link">{{ $provider_pages->video_heading }}</a>
                                         </li>
                                     @endif
                                 </ul>
@@ -86,11 +86,11 @@
                         @endif
                         @if($provider_pages->blog_status == 1)
                             <li class="nav-item">
-                                <a href="{{ route("front.blog") }}" class="nav-link">{{ $provider_pages->blog_title }}</a>
+                                <a href="{{ route("front.blog") }}" class="nav-link">{{ $provider_pages->blog_heading }}</a>
                             </li>
                         @endif
                         @if($provider_pages->contact_status == 1)
-                            <li class="nav-item"><a href="{{ route("front.contact") }}" class="nav-link">{{ $provider_pages->contact_title }}</a></li>
+                            <li class="nav-item"><a href="{{ route("front.contact") }}" class="nav-link">{{ $provider_pages->contact_heading }}</a></li>
                         @endif
                     </ul>
                 </div>

@@ -17,12 +17,7 @@
                     @if(Session::has("error")) <p class="alert alert-danger p-1">{{ Session::get("error") }}</p> @endif                     
                     <form action="{{ route("admin.page.contact.update") }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        @method("PUT")                    
-                        <div class="form-group mb-3">
-                            <label>Contact Title *</label>
-                            <input type="text" class="form-control" name="contact_title" value="{{ $contact->contact_title }}">
-                            @error("contact_title") <p class="text-danger m-0">{{ $message }}</p> @enderror
-                        </div>
+                        @method("PUT") 
                         <div class="form-group mb-3">
                             <label>Contact Heading *</label>
                             <input type="text" class="form-control" name="contact_heading" value="{{ $contact->contact_heading }}">

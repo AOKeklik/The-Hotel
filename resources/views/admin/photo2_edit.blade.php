@@ -19,11 +19,6 @@
                         @csrf
                         @method("PUT")
                         <div class="form-group mb-3">
-                            <label>Photo Title</label>
-                            <input type="text" class="form-control" name="photo_title" value="{{ $photo->photo_title }}">
-                            @error("photo_title") <p class="text-danger m-0">{{ $message }}</p> @enderror
-                        </div>
-                        <div class="form-group mb-3">
                             <label>Photo Heading</label>
                             <input type="text" class="form-control" name="photo_heading" value="{{ $photo->photo_heading }}">
                             @error("photo_heading") <p class="text-danger m-0">{{ $message }}</p> @enderror
