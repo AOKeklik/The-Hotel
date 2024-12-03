@@ -17,16 +17,13 @@
                     @if($provider_pages->checkout_status == 1) 
                         <li class="menu"><a href="checkout.html">{{ $provider_pages->checkout_heading }}</a></li>
                     @endif
-                    <li class="menu"><a href="signup.html">Sign Up</a></li>
-                    <li class="menu"><a href="login.html">Login</a></li>
+                    <li class="menu"><a href="{{ route("customer.signup") }}">Sign Up</a></li>
+                    <li class="menu"><a href="{{ route("customer.login") }}">Login</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
-
-@if(Session::has("status")) <p class="alert alert-success p-2">{{ Session::get("status") }}</p> @endif
-@if(Session::has("error")) <p class="alert alert-danger p-2">{{ Session::get("error") }}</p> @endif
 
 
 <div class="navbar-area" id="stickymenu">

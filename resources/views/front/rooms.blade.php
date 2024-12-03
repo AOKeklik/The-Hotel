@@ -1,6 +1,6 @@
 @extends("front.layout.app")
-@section("title","Rooms")
-@section("heading","Rooms")
+@section("title",$provider_page->room_heading)
+@section("heading",$provider_page->room_heading)
 @section("content")
 <div class="home-rooms">
     <div class="container">

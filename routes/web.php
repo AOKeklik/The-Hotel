@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\AdminSlideController;
 use App\Http\Controllers\Admin\AdminSubscriberController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminVideoController;
+use App\Http\Controllers\Customer\CustomerHomeController;
+use App\Http\Controllers\Customer\CustomerLoginController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\ContactController;
@@ -26,9 +28,8 @@ use App\Http\Controllers\Front\SubscriberController;
 use App\Http\Controllers\Front\TermsController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::prefix("admin")->group(function () {
-    Route::get("home", [AdminHomeController::class, "index"])->name("admin.index")->middleware("admin:admin");
-    
     /* login */
     Route::get("login", [AdminLoginController::class, "index"])->name("admin.login");
     Route::get("logout", [AdminLoginController::class, "logout"])->name("admin.logout");
@@ -39,121 +40,142 @@ Route::prefix("admin")->group(function () {
     Route::get("reset-password/{token}/{email}", [AdminLoginController::class, "reset_password"])->name("admin.login.reset");
     Route::post("forget-submit", [AdminLoginController::class, "forget_submit"])->name("admin.login.forget.submit");
     Route::post("reset-submit", [AdminLoginController::class, "reset_submit"])->name("admin.login.reset.submit");
+});
+
+Route::prefix("admin")->middleware(["admin:admin"])->group(function () {
+    Route::get("home", [AdminHomeController::class, "index"])->name("admin.index");
 
     /* profile */
-    Route::get("profile", [AdminProfileController::class, "index"])->name("admin.profile")->middleware("admin:admin");
-    Route::put("profile/submit", [AdminProfileController::class, "submit_profile"])->name("admin.profile.submit")->middleware("admin:admin");
+    Route::get("profile", [AdminProfileController::class, "index"])->name("admin.profile");
+    Route::put("profile/submit", [AdminProfileController::class, "submit_profile"])->name("admin.profile.submit");
 
     /* slides */
-    Route::get("slides", [AdminSlideController::class, "index"])->name("admin.slides")->middleware("admin:admin");
-    Route::get("slide/add", [AdminSlideController::class, "add_slide"])->name("admin.slide.add")->middleware("admin:admin");
-    Route::get("slide/edit/{slide_id}", [AdminSlideController::class, "edit_slide"])->name("admin.slide.edit")->middleware(("admin:admin"));
-    Route::post("slide/store", [AdminSlideController::class, "store_slide"])->name("admin.slide.store")->middleware("admin:admin");
-    Route::put("slide/update", [AdminSlideController::class, "update_slide"])->name("admin.slide.update")->middleware("admin:admin");
-    Route::delete("slide/delete", [AdminSlideController::class, "delete_slide"])->name("admin.slide.delete")->middleware("admin:admin");
+    Route::get("slides", [AdminSlideController::class, "index"])->name("admin.slides");
+    Route::get("slide/add", [AdminSlideController::class, "add_slide"])->name("admin.slide.add");
+    Route::get("slide/edit/{slide_id}", [AdminSlideController::class, "edit_slide"])->name("admin.slide.edit");
+    Route::post("slide/store", [AdminSlideController::class, "store_slide"])->name("admin.slide.store");
+    Route::put("slide/update", [AdminSlideController::class, "update_slide"])->name("admin.slide.update");
+    Route::delete("slide/delete", [AdminSlideController::class, "delete_slide"])->name("admin.slide.delete");
 
     /* features */
-    Route::get("features", [AdminFeatureController::class, "index"])->name("admin.features")->middleware("admin:admin");
-    Route::get("feature/add", [AdminFeatureController::class, "add_feature"])->name("admin.feature.add")->middleware("admin:admin");
-    Route::get("feature/edit/{feature_id}", [AdminFeatureController::class, "edit_feature"])->name("admin.feature.edit")->middleware("admin:admin");
-    Route::post("feature/store", [AdminFeatureController::class, "store_feature"])->name("admin.feature.store")->middleware("admin:admin");
+    Route::get("features", [AdminFeatureController::class, "index"])->name("admin.features");
+    Route::get("feature/add", [AdminFeatureController::class, "add_feature"])->name("admin.feature.add");
+    Route::get("feature/edit/{feature_id}", [AdminFeatureController::class, "edit_feature"])->name("admin.feature.edit");
+    Route::post("feature/store", [AdminFeatureController::class, "store_feature"])->name("admin.feature.store");
     Route::put("feature/update", [AdminFeatureController::class, "update_feature"])->name("admin.feature.update");
-    Route::get("feature/delete/{feature_id}", [AdminFeatureController::class, "delete_feature"])->name("admin.feature.delete")->middleware("admin:admin");
+    Route::get("feature/delete/{feature_id}", [AdminFeatureController::class, "delete_feature"])->name("admin.feature.delete");
 
     /* testimonials */
-    Route::get("testimonials", [AdminTestimonialController::class, "index"])->name("admin.testimonials")->middleware("admin:admin");
-    Route::get("testimonial/add", [AdminTestimonialController::class, "add_testimonial"])->name("admin.testimonial.add")->middleware("admin:admin");
-    Route::get("testimonial/edit/{testimonial_id}", [AdminTestimonialController::class, "edit_testimonial"])->name("admin.testimonial.edit")->middleware("admin:admin");
-    Route::post("testimonial/store", [AdminTestimonialController::class, "store_testimonial"])->name("admin.testimonial.store")->middleware("admin:admin");
-    Route::put("testimonial/update", [AdminTestimonialController::class, "update_testimonial"])->name("admin.testimonial.update")->middleware("admin:admin");
-    Route::get("testimonial/delete/{testimonial_id}", [AdminTestimonialController::class, "delete_testimonial"])->name("admin.testimonial.delete")->middleware("admin:admin");
+    Route::get("testimonials", [AdminTestimonialController::class, "index"])->name("admin.testimonials");
+    Route::get("testimonial/add", [AdminTestimonialController::class, "add_testimonial"])->name("admin.testimonial.add");
+    Route::get("testimonial/edit/{testimonial_id}", [AdminTestimonialController::class, "edit_testimonial"])->name("admin.testimonial.edit");
+    Route::post("testimonial/store", [AdminTestimonialController::class, "store_testimonial"])->name("admin.testimonial.store");
+    Route::put("testimonial/update", [AdminTestimonialController::class, "update_testimonial"])->name("admin.testimonial.update");
+    Route::get("testimonial/delete/{testimonial_id}", [AdminTestimonialController::class, "delete_testimonial"])->name("admin.testimonial.delete");
 
     /* blogs */
-    Route::get("posts", [AdminPostController::class, "index"])->name("admin.posts")->middleware("admin:admin");
-    Route::get("post/add", [AdminPostController::class, "add_post"])->name("admin.post.add")->middleware("admin:admin");
-    Route::get("post/edit/{post_id}", [AdminPostController::class, "edit_post"])->name("admin.post.edit")->middleware("admin:admin");
-    Route::post("post/store", [AdminPostController::class, "store_post"])->name("admin.post.store")->middleware("admin:admin");
-    Route::put("post/update", [AdminPostController::class, "update_post"])->name("admin.post.update")->middleware("admin:admin");
-    Route::get("post/delete/{post_id}", [AdminPostController::class, "delete_post"])->name("admin.post.delete")->middleware("admin:admin");
+    Route::get("posts", [AdminPostController::class, "index"])->name("admin.posts");
+    Route::get("post/add", [AdminPostController::class, "add_post"])->name("admin.post.add");
+    Route::get("post/edit/{post_id}", [AdminPostController::class, "edit_post"])->name("admin.post.edit");
+    Route::post("post/store", [AdminPostController::class, "store_post"])->name("admin.post.store");
+    Route::put("post/update", [AdminPostController::class, "update_post"])->name("admin.post.update");
+    Route::get("post/delete/{post_id}", [AdminPostController::class, "delete_post"])->name("admin.post.delete");
 
     /* photo galery */
-    Route::get("photos", [AdminPhotoController::class, "index"])->name("admin.photos")->middleware("admin:admin");
-    Route::get("photo/add", [AdminPhotoController::class, "add_photo"])->name("admin.photo.add")->middleware("admin:admin");
-    Route::get("photo/edit/{photo_id}", [AdminPhotoController::class, "edit_photo"])->name("admin.photo.edit")->middleware("admin:admin");
-    Route::post("photo/store", [AdminPhotoController::class, "store_photo"])->name("admin.photo.store")->middleware("admin:admin");
-    Route::put("photo/update", [AdminPhotoController::class, "update_photo"])->name("admin.photo.update")->middleware("admin:admin");
-    Route::get("photo/delete/{photo_id}", [AdminPhotoController::class, "delete_photo"])->name("admin.photo.delete")->middleware("admin:admin");
+    Route::get("photos", [AdminPhotoController::class, "index"])->name("admin.photos");
+    Route::get("photo/add", [AdminPhotoController::class, "add_photo"])->name("admin.photo.add");
+    Route::get("photo/edit/{photo_id}", [AdminPhotoController::class, "edit_photo"])->name("admin.photo.edit");
+    Route::post("photo/store", [AdminPhotoController::class, "store_photo"])->name("admin.photo.store");
+    Route::put("photo/update", [AdminPhotoController::class, "update_photo"])->name("admin.photo.update");
+    Route::get("photo/delete/{photo_id}", [AdminPhotoController::class, "delete_photo"])->name("admin.photo.delete");
 
     /* video galery */
-    Route::get("videos", [AdminVideoController::class, "index"])->name("admin.videos")->middleware("admin:admin");
-    Route::get("video/add", [AdminVideoController::class, "add_video"])->name("admin.video.add")->middleware("admin:admin");
-    Route::get("video/edit/{video_id}", [AdminVideoController::class, "edit_video"])->name("admin.video.edit")->middleware("admin:admin");
-    Route::post("video/store", [AdminVideoController::class, "store_video"])->name("admin.video.store")->middleware("admin:admin");
-    Route::put("video/update", [AdminVideoController::class, "update_video"])->name("admin.video.update")->middleware("admin:admin");
-    Route::get("video/delete/{video_id}", [AdminVideoController::class, "delete_video"])->name("admin.video.delete")->middleware("admin:admin");
+    Route::get("videos", [AdminVideoController::class, "index"])->name("admin.videos");
+    Route::get("video/add", [AdminVideoController::class, "add_video"])->name("admin.video.add");
+    Route::get("video/edit/{video_id}", [AdminVideoController::class, "edit_video"])->name("admin.video.edit");
+    Route::post("video/store", [AdminVideoController::class, "store_video"])->name("admin.video.store");
+    Route::put("video/update", [AdminVideoController::class, "update_video"])->name("admin.video.update");
+    Route::get("video/delete/{video_id}", [AdminVideoController::class, "delete_video"])->name("admin.video.delete");
 
     /* faq */
-    Route::get("faqs", [AdminFaqController::class, "index"])->name("admin.faqs")->middleware("admin:admin");
-    Route::get("faq/add", [AdminFaqController::class, "add_faq"])->name("admin.faq.add")->middleware("admin:admin");
-    Route::get("faq/edit/{faq_id}", [AdminFaqController::class, "edit_faq"])->name("admin.faq.edit")->middleware("admin:admin");
-    Route::post("faq/store", [AdminFaqController::class, "store_faq"])->name("admin.faq.store")->middleware("admin:admin");
-    Route::put("faq/update", [AdminFaqController::class, "update_faq"])->name("admin.faq.update")->middleware("admin:admin");
-    Route::get("faq/delete/{faq_id}", [AdminFaqController::class, "delete_faq"])->name("admin.faq.delete")->middleware("admin:admin");
+    Route::get("faqs", [AdminFaqController::class, "index"])->name("admin.faqs");
+    Route::get("faq/add", [AdminFaqController::class, "add_faq"])->name("admin.faq.add");
+    Route::get("faq/edit/{faq_id}", [AdminFaqController::class, "edit_faq"])->name("admin.faq.edit");
+    Route::post("faq/store", [AdminFaqController::class, "store_faq"])->name("admin.faq.store");
+    Route::put("faq/update", [AdminFaqController::class, "update_faq"])->name("admin.faq.update");
+    Route::get("faq/delete/{faq_id}", [AdminFaqController::class, "delete_faq"])->name("admin.faq.delete");
 
     /* subscriber */
-    Route::get("subscribers", [AdminSubscriberController::class, "index"])->name("admin.subscribers")->middleware("admin:admin");
-    Route::get("subscriber/edit/{subscriber_id}", [AdminSubscriberController::class, "edit_subscriber"])->name("admin.subscriber.edit")->middleware("admin:admin");
-    Route::get("subscriber/email", [AdminSubscriberController::class, "email_subscriber"])->name("admin.subscriber.email")->middleware("admin:admin");
-    Route::put("subscriber/update", [AdminSubscriberController::class, "update_subscriber"])->name("admin.subscriber.update")->middleware("admin:admin");
-    Route::get("subscriber/delete/{subscriber_id}", [AdminSubscriberController::class, "delete_subscriber"])->name("admin.subscriber.delete")->middleware("admin:admin");
-    Route::post("subscriber/email/update", [AdminSubscriberController::class, "submit_subscriber"])->name("admin.subscriber.email.submit")->middleware("admin:admin");
+    Route::get("subscribers", [AdminSubscriberController::class, "index"])->name("admin.subscribers");
+    Route::get("subscriber/edit/{subscriber_id}", [AdminSubscriberController::class, "edit_subscriber"])->name("admin.subscriber.edit");
+    Route::get("subscriber/email", [AdminSubscriberController::class, "email_subscriber"])->name("admin.subscriber.email");
+    Route::put("subscriber/update", [AdminSubscriberController::class, "update_subscriber"])->name("admin.subscriber.update");
+    Route::get("subscriber/delete/{subscriber_id}", [AdminSubscriberController::class, "delete_subscriber"])->name("admin.subscriber.delete");
+    Route::post("subscriber/email/update", [AdminSubscriberController::class, "submit_subscriber"])->name("admin.subscriber.email.submit");
 
     /* amenity */
-    Route::get("hotel/amenities", [AdminAmenityController::class, "index"])->name("admin.hotel.amenities")->middleware("admin:admin");
-    Route::get("hotel/amenity/add", [AdminAmenityController::class, "add_amenity"])->name("admin.hotel.amenity.add")->middleware("admin:admin");
-    Route::get("hotel/amenity/edit/{amenity_id}", [AdminAmenityController::class, "edit_amenity"])->name("admin.hotel.amenity.edit")->middleware("admin:admin");
-    Route::get("hotel/amenity/delete/{amenity_id}", [AdminAmenityController::class, "delete_amenity"])->name("admin.hotel.amenity.delete")->middleware("admin:admin");
-    Route::post("hotel/amenity/store", [AdminAmenityController::class, "store_amenity"])->name("admin.hotel.amenity.store")->middleware("admin:admin");
-    Route::put("hotel/amenity/update", [AdminAmenityController::class, "update_amenity"])->name("admin.hotel.amenity.update")->middleware(("admin:admin"));
+    Route::get("hotel/amenities", [AdminAmenityController::class, "index"])->name("admin.hotel.amenities");
+    Route::get("hotel/amenity/add", [AdminAmenityController::class, "add_amenity"])->name("admin.hotel.amenity.add");
+    Route::get("hotel/amenity/edit/{amenity_id}", [AdminAmenityController::class, "edit_amenity"])->name("admin.hotel.amenity.edit");
+    Route::get("hotel/amenity/delete/{amenity_id}", [AdminAmenityController::class, "delete_amenity"])->name("admin.hotel.amenity.delete");
+    Route::post("hotel/amenity/store", [AdminAmenityController::class, "store_amenity"])->name("admin.hotel.amenity.store");
+    Route::put("hotel/amenity/update", [AdminAmenityController::class, "update_amenity"])->name("admin.hotel.amenity.update");
 
     /* room */
-    Route::get("hotel/rooms", [AdminRoomController::class, "index"])->name("admin.hotel.rooms")->middleware("admin:admin");
-    Route::get("hotel/room/add", [AdminRoomController::class, "add_room"])->name("admin.hotel.room.add")->middleware("admin:admin");
-    Route::get("hotel/room/edit/{room_id}", [AdminRoomController::class, "edit_room"])->name("admin.hotel.room.edit")->middleware("admin:admin");
-    Route::get("hotel/room/delete/{room_id}", [AdminRoomController::class, "delete_room"])->name("admin.hotel.room.delete")->middleware("admin:admin");
-    Route::post("hotel/room/store",[AdminRoomController::class, "store_room"])->name("admin.hotel.room.store")->middleware("admin:admin");
-    Route::put("hotel/room/update", [AdminRoomController::class, "update_room"])->name("admin.hotel.room.update")->middleware("admin:admin");
-    Route::get("hotel/room/gallery/{room_id}", [AdminRoomController::class, "gallery_room"])->name("admin.hotel.room.gallery")->middleware("admin:admin");
-    Route::post("hotel/room/gallery/store", [AdminRoomController::class, "store_gallery_room"])->name("admin.hotel.room.gallery.store")->middleware("admin:admin");
-    Route::get("hote/room/gallery/edit/{gallery_id}", [AdminRoomController::class, "edit_gallery_room"])->name("admin.hotel.room.gallery.edit")->middleware("admin:admin");
-    Route::get("hotel/room/gallery/delete/{gallery_id}", [AdminRoomController::class, "delete_gallery_room"])->name("admin.hotel.room.gallery.delete")->middleware("admin:admin");
-    Route::put("hotel/room/gallery/update",[AdminRoomController::class, "update_gallery_room"])->name("admin.hotel.room.gallery.update")->middleware("admin:admin");
+    Route::get("hotel/rooms", [AdminRoomController::class, "index"])->name("admin.hotel.rooms");
+    Route::get("hotel/room/add", [AdminRoomController::class, "add_room"])->name("admin.hotel.room.add");
+    Route::get("hotel/room/edit/{room_id}", [AdminRoomController::class, "edit_room"])->name("admin.hotel.room.edit");
+    Route::get("hotel/room/delete/{room_id}", [AdminRoomController::class, "delete_room"])->name("admin.hotel.room.delete");
+    Route::post("hotel/room/store",[AdminRoomController::class, "store_room"])->name("admin.hotel.room.store");
+    Route::put("hotel/room/update", [AdminRoomController::class, "update_room"])->name("admin.hotel.room.update");
+    Route::get("hotel/room/gallery/{room_id}", [AdminRoomController::class, "gallery_room"])->name("admin.hotel.room.gallery");
+    Route::post("hotel/room/gallery/store", [AdminRoomController::class, "store_gallery_room"])->name("admin.hotel.room.gallery.store");
+    Route::get("hote/room/gallery/edit/{gallery_id}", [AdminRoomController::class, "edit_gallery_room"])->name("admin.hotel.room.gallery.edit");
+    Route::get("hotel/room/gallery/delete/{gallery_id}", [AdminRoomController::class, "delete_gallery_room"])->name("admin.hotel.room.gallery.delete");
+    Route::put("hotel/room/gallery/update",[AdminRoomController::class, "update_gallery_room"])->name("admin.hotel.room.gallery.update");
 
     /* pages */
-    Route::get("page/about/edit", [AdminPageController::class, "edit_about"])->name("admin.page.about.edit")->middleware("admin:admin");
-    Route::put("page/about/update", [AdminPageController::class, "update_about"])->name("admin.page.about.update")->middleware("admin:admin");
-    Route::get("page/rooms/edit", [AdminPageController::class, "edit_rooms"])->name("admin.page.rooms.edit")->middleware("admin:admin");
-    Route::put("page/rooms/update", [AdminPageController::class, "update_rooms"])->name("admin.page.rooms.update")->middleware("admin:admin");
-    Route::get("page/photo/edit", [AdminPageController::class, "edit_photo"])->name("admin.page.photo.edit")->middleware("admin:admin");
-    Route::put("page/photo/update", [AdminPageController::class, "update_photo"])->name("admin.page.photo.update")->middleware("admin:admin");
-    Route::get("page/video/edit", [AdminPageController::class, "edit_video"])->name("admin.page.video.edit")->middleware("admin:admin");
-    Route::put("page/video/update", [AdminPageController::class, "update_video"])->name("admin.page.video.update")->middleware("admin:admin");
-    Route::get("page/blog/edit", [AdminPageController::class, "edit_blog"])->name("admin.page.blog.edit")->middleware("admin:admin");
-    Route::put("page/blog/update", [AdminPageController::class, "update_blog"])->name("admin.page.blog.update")->middleware("admin:admin");
-    Route::get("page/contact/edit", [AdminPageController::class, "edit_contact"])->name("admin.page.contact.edit")->middleware("admin:admin");
-    Route::put("page/contact/update", [AdminPageController::class, "update_contact"])->name("admin.page.contact.update")->middleware("admin:admin");
-    Route::get("page/cart/edit", [AdminPageController::class, "edit_cart"])->name("admin.page.cart.edit")->middleware("admin:admin");
-    Route::put("page/cart/update", [AdminPageController::class, "update_cart"])->name("admin.page.cart.update")->middleware("admin:admin");
-    Route::get("page/checkout/edit", [AdminPageController::class, "edit_checkout"])->name("admin.page.checkout.edit")->middleware("admin:admin");
-    Route::put("page/checkout/update", [AdminPageController::class, "update_checkout"])->name("admin.page.checkout.update")->middleware("admin:admin");
-    Route::get("page/payment/edit", [AdminPageController::class, "edit_payment"])->name("admin.page.payment.edit")->middleware("admin:admin");
-    Route::put("page/payment/update", [AdminPageController::class, "update_payment"])->name("admin.page.payment.update")->middleware("admin:admin");
-    Route::get("page/terms/edit", [AdminPageController::class, "edit_terms"])->name("admin.page.terms.edit")->middleware("admin:admin");
-    Route::put("page/terms/update", [AdminPageController::class, "update_terms"])->name("admin.page.terms.update")->middleware("admin:admin");
-    Route::get("page/policy/edit", [AdminPageController::class, "edit_policy"])->name("admin.page.policy.edit")->middleware("admin:admin");
-    Route::put("page/policy/update", [AdminPageController::class, "update_policy"])->name("admin.page.policy.update")->middleware("admin:admin");
-    Route::get("page/faq/edit",[AdminPageController::class, "edit_faq"])->name("admin.page.faq.edit")->middleware("admin:admin");
-    Route::put("page/faq/update", [AdminPageController::class, "update_faq"])->name("admin.page.faq.update")->middleware("admin:admin");
+    Route::get("page/about/edit", [AdminPageController::class, "edit_about"])->name("admin.page.about.edit");
+    Route::put("page/about/update", [AdminPageController::class, "update_about"])->name("admin.page.about.update");
+    Route::get("page/rooms/edit", [AdminPageController::class, "edit_rooms"])->name("admin.page.rooms.edit");
+    Route::put("page/rooms/update", [AdminPageController::class, "update_rooms"])->name("admin.page.rooms.update");
+    Route::get("page/photo/edit", [AdminPageController::class, "edit_photo"])->name("admin.page.photo.edit");
+    Route::put("page/photo/update", [AdminPageController::class, "update_photo"])->name("admin.page.photo.update");
+    Route::get("page/video/edit", [AdminPageController::class, "edit_video"])->name("admin.page.video.edit");
+    Route::put("page/video/update", [AdminPageController::class, "update_video"])->name("admin.page.video.update");
+    Route::get("page/blog/edit", [AdminPageController::class, "edit_blog"])->name("admin.page.blog.edit");
+    Route::put("page/blog/update", [AdminPageController::class, "update_blog"])->name("admin.page.blog.update");
+    Route::get("page/contact/edit", [AdminPageController::class, "edit_contact"])->name("admin.page.contact.edit");
+    Route::put("page/contact/update", [AdminPageController::class, "update_contact"])->name("admin.page.contact.update");
+    Route::get("page/cart/edit", [AdminPageController::class, "edit_cart"])->name("admin.page.cart.edit");
+    Route::put("page/cart/update", [AdminPageController::class, "update_cart"])->name("admin.page.cart.update");
+    Route::get("page/checkout/edit", [AdminPageController::class, "edit_checkout"])->name("admin.page.checkout.edit");
+    Route::put("page/checkout/update", [AdminPageController::class, "update_checkout"])->name("admin.page.checkout.update");
+    Route::get("page/payment/edit", [AdminPageController::class, "edit_payment"])->name("admin.page.payment.edit");
+    Route::put("page/payment/update", [AdminPageController::class, "update_payment"])->name("admin.page.payment.update");
+    Route::get("page/terms/edit", [AdminPageController::class, "edit_terms"])->name("admin.page.terms.edit");
+    Route::put("page/terms/update", [AdminPageController::class, "update_terms"])->name("admin.page.terms.update");
+    Route::get("page/policy/edit", [AdminPageController::class, "edit_policy"])->name("admin.page.policy.edit");
+    Route::put("page/policy/update", [AdminPageController::class, "update_policy"])->name("admin.page.policy.update");
+    Route::get("page/faq/edit",[AdminPageController::class, "edit_faq"])->name("admin.page.faq.edit");
+    Route::put("page/faq/update", [AdminPageController::class, "update_faq"])->name("admin.page.faq.update");
+});
+
+Route::prefix("customer")->group(function () {
+    /* login */
+    Route::get("signup", [CustomerLoginController::class, "signup"])->name("customer.signup");
+    Route::get("login", [CustomerLoginController::class, "login"])->name("customer.login");
+    Route::get("reset", [CustomerLoginController::class, "reset"])->name("customer.reset");
+    Route::post("reset/submit", [CustomerLoginController::class, "submit_reset"])->name("customer.reset.submit");
+    Route::post("login/submit", [CustomerLoginController::class, "submit_login"])->name("customer.login.submit");
+    Route::post("signup/submit", [CustomerLoginController::class, "submit_signup"])->name("customer.signup.submit");
+    Route::get("signup/verification/{token}/{email}", [CustomerLoginController::class, "verification"])->name("customer.signup.verification");
+    Route::get("logout", [CustomerLoginController::class, "logout"])->name("customer.logout");
+});
+
+/* customer */
+Route::prefix("customer")->middleware(["customer:customer"])->group( function () {
+    Route::get("", [CustomerHomeController::class, "index"])->name("customer.index");
 });
 
 Route::prefix("/")->group( function () {
