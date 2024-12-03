@@ -268,4 +268,32 @@ class AdminPageController extends Controller
 
         return redirect()->back()->with("status","Room page has been updated successfully!");
     }
+
+    public function edit_customer () {
+        $customer = Page::find(1);
+
+        return view("admin.customer_edit",compact("customer"));
+    }
+    
+    public function update_customer (Request $request) {
+        $request->validate([
+            "customer_login_heading" => "required|string",
+            "customer_signup_heading" => "required|string",
+            "customer_forget_heading" => "required|string",
+            "customer_signup_status" => "nullable|string|in:Yes",
+            "customer_login_status" => "nullable|string|in:Yes",
+        ]);
+
+        $customer = Page::find(1);
+
+        $customer->customer_login_heading = $request->customer_login_heading;
+        $customer->customer_signup_heading = $request->customer_signup_heading;
+        $customer->customer_forget_heading = $request->customer_forget_heading;
+        $customer->customer_signup_status = $request->customer_signup_status == "Yes" ? 1 : 0;
+        $customer->customer_login_status = $request->customer_login_status == "Yes" ? 1 : 0;
+
+        $customer->update();
+
+        return redirect()->back()->with("status","Customer has been updated successfully!");
+    }
 }

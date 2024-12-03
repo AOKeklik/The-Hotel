@@ -77,6 +77,7 @@
         <li class="@if(Route::is("admin.page.policy.edit")) active @endif"><a class="nav-link" href="{{ route("admin.page.policy.edit") }}"><i class="fa fa-angle-right"></i> Policy Page</a></li>
         <li class="@if(Route::is("admin.page.terms.edit")) active @endif"><a class="nav-link" href="{{ route("admin.page.terms.edit") }}"><i class="fa fa-angle-right"></i> Terms Page</a></li>
         <li class="@if(Route::is("admin.page.faq.edit")) active @endif"><a class="nav-link" href="{{ route("admin.page.faq.edit") }}"><i class="fa fa-angle-right"></i> Fag Page</a></li>
+        <li class="@if(Route::is("admin.page.customer.edit")) active @endif"><a class="nav-link" href="{{ route("admin.page.customer.edit") }}"><i class="fa fa-angle-right"></i> Customer Pages</a></li>
                 
                 </ul>
             </li>

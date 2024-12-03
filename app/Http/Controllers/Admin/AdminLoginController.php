@@ -91,6 +91,7 @@ class AdminLoginController extends Controller
             return redirect()->back()->with("error", "Invalid email address or password!");
 
         $admin->password = Hash::make($request->password_new);
+        $admin->token = "";
         $admin->update();
 
         return redirect()->route("admin.login")->with("status", "Password has been updated usccessfully!");
