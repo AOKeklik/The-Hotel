@@ -17,8 +17,12 @@
                     @if($provider_pages->checkout_status == 1) 
                         <li class="menu"><a href="checkout.html">{{ $provider_pages->checkout_heading }}</a></li>
                     @endif
-                    <li class="menu"><a href="{{ route("customer.signup") }}">Sign Up</a></li>
-                    <li class="menu"><a href="{{ route("customer.login") }}">Login</a></li>
+                    @if($provider_pages->customer_signup_status == 1)
+                        <li class="menu"><a href="{{ route("customer.signup") }}">{{ $provider_pages->customer_signup_heading }}</a></li>
+                    @endif
+                    @if($provider_pages->customer_login_status == 1)
+                        <li class="menu"><a href="{{ route("customer.login") }}">{{ $provider_pages->customer_login_heading }}</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -31,7 +35,7 @@
     <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
         <a href="{{ route("front.index") }}" class="logo">
-            <img src="{{ asset("uploads") }}/logo.png" alt="">
+            <img src="{{ asset("uploads/logo.png") }}" alt="">
         </a>
     </div>
 
@@ -40,7 +44,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
                 <a class="navbar-brand" href="{{ route("front.index") }}">
-                    <img src="{{ asset("uploads") }}/logo.png" alt="">
+                    <img src="{{ asset("uploads/logo.png") }}" alt="">
                 </a>
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">        

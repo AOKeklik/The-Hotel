@@ -55,8 +55,9 @@ return new class extends Migration
             $table->text("customer_login_heading");
             $table->text("customer_signup_heading");            
             $table->text("customer_forget_heading");            
+            $table->text("customer_reset_heading"); 
             $table->text("customer_signup_status");            
-            $table->text("customer_login_status");            
+            $table->text("customer_login_status");                      
             
             $table->timestamps();
         });

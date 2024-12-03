@@ -10,7 +10,7 @@ class AdminPageController extends Controller
 {
     public function edit_about () {
         $about = Page::find(1);
-        return view("admin.about_edit", compact("about"));
+        return view("admin.page_about_edit", compact("about"));
     }
 
     public function update_about (Request $request) {
@@ -33,7 +33,7 @@ class AdminPageController extends Controller
 
     public function edit_terms () {
         $page = Page::find(1);
-        return view("admin.terms_edit",compact("page"));
+        return view("admin.page_terms_edit",compact("page"));
     }
 
     public function update_terms (Request $request) {
@@ -56,7 +56,7 @@ class AdminPageController extends Controller
 
     public function edit_policy () {
         $policy = Page::where("id",1)->select("policy_heading","policy_content","policy_status")->first();
-        return view("admin.policy_edit",compact("policy"));
+        return view("admin.page_policy_edit",compact("policy"));
     }
 
     public function update_policy (Request $request) {
@@ -79,7 +79,7 @@ class AdminPageController extends Controller
 
     public function edit_contact () {
         $contact = Page::where("id",1)->select("contact_heading","contact_content","contact_status")->first();
-        return view("admin.contact_edit",compact("contact"));
+        return view("admin.page_contact_edit",compact("contact"));
     }
 
     public function update_contact (Request $request) {
@@ -102,7 +102,7 @@ class AdminPageController extends Controller
 
     public function edit_photo () {
         $photo = Page::where("id",1)->select("photo_heading","photo_status")->first();
-        return view("admin.photo2_edit",compact("photo"));
+        return view("admin.page_photo_edit",compact("photo"));
     }
 
     public function update_photo (Request $request) {
@@ -124,7 +124,7 @@ class AdminPageController extends Controller
 
     public function edit_video () {
         $video = Page::where("id",1)->select("video_heading","video_status")->first();
-        return view("admin.video2_edit",compact("video"));
+        return view("admin.page_video_edit",compact("video"));
     }
 
     public function update_video (Request $request) {
@@ -145,7 +145,7 @@ class AdminPageController extends Controller
 
     public function edit_faq () {
         $faq = Page::where("id",1)->select("faq_heading","faq_status")->first();
-        return view("admin.faq2_edit",compact("faq"));
+        return view("admin.page_faq_edit",compact("faq"));
     }
 
     public function update_faq (Request $request) {
@@ -166,7 +166,7 @@ class AdminPageController extends Controller
 
     public function edit_blog () {
         $blog = Page::where("id",1)->select("blog_heading","blog_status")->first();
-        return view("admin.blog_edit",compact("blog"));
+        return view("admin.page_blog_edit",compact("blog"));
     }
 
     public function update_blog (Request $request) {
@@ -187,7 +187,7 @@ class AdminPageController extends Controller
 
     public function edit_cart () {
         $cart = Page::where("id",1)->select("cart_heading","cart_status")->first();
-        return view("admin.cart2_edit",compact("cart"));
+        return view("admin.page_cart_edit",compact("cart"));
     }
 
     public function update_cart (Request $request) {
@@ -208,7 +208,7 @@ class AdminPageController extends Controller
 
     public function edit_checkout () {
         $checkout = Page::where("id",1)->select("checkout_heading","checkout_status")->first();
-        return view("admin.checkout2_edit",compact("checkout"));
+        return view("admin.page_checkout_edit",compact("checkout"));
     }
 
     public function update_checkout (Request $request) {
@@ -229,7 +229,7 @@ class AdminPageController extends Controller
 
     public function edit_payment () {
         $payment = Page::where("id",1)->select("payment_heading")->first();
-        return view("admin.payment2_edit",compact("payment"));
+        return view("admin.page_payment_edit",compact("payment"));
     }
 
     public function update_payment (Request $request) {
@@ -247,7 +247,7 @@ class AdminPageController extends Controller
 
     public function edit_rooms () {
         $room = Page::where("id",1)->select("room_heading","room_status")->first();
-        return view("admin.rooms2",compact("room"));
+        return view("admin.page_rooms",compact("room"));
     }
 
     public function update_rooms (Request $request) {
@@ -272,7 +272,7 @@ class AdminPageController extends Controller
     public function edit_customer () {
         $customer = Page::find(1);
 
-        return view("admin.customer_edit",compact("customer"));
+        return view("admin.page_customer_edit",compact("customer"));
     }
     
     public function update_customer (Request $request) {
@@ -280,6 +280,7 @@ class AdminPageController extends Controller
             "customer_login_heading" => "required|string",
             "customer_signup_heading" => "required|string",
             "customer_forget_heading" => "required|string",
+            "customer_reset_heading" => "required|string",
             "customer_signup_status" => "nullable|string|in:Yes",
             "customer_login_status" => "nullable|string|in:Yes",
         ]);
@@ -289,6 +290,7 @@ class AdminPageController extends Controller
         $customer->customer_login_heading = $request->customer_login_heading;
         $customer->customer_signup_heading = $request->customer_signup_heading;
         $customer->customer_forget_heading = $request->customer_forget_heading;
+        $customer->customer_reset_heading = $request->customer_reset_heading;
         $customer->customer_signup_status = $request->customer_signup_status == "Yes" ? 1 : 0;
         $customer->customer_login_status = $request->customer_login_status == "Yes" ? 1 : 0;
 

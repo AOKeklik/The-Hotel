@@ -34,6 +34,11 @@
                             @error("customer_forget_heading") <p class="text-danger m-0">{{ $message }}</p> @enderror
                         </div>
                         <div class="form-group mb-3">
+                            <label>Customer Reset Heading *</label>
+                            <input type="text" class="form-control" name="customer_reset_heading" value="{{ $customer->customer_reset_heading }}">
+                            @error("customer_reset_heading") <p class="text-danger m-0">{{ $message }}</p> @enderror
+                        </div>
+                        <div class="form-group mb-3">
                             <label>Customer Signup Status *</label>
                             <div class="toggle-container">
                                 <input @if($customer->customer_signup_status == 1) checked @endif type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="success" data-offstyle="danger" name="customer_signup_status" value="Yes">

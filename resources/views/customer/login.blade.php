@@ -1,4 +1,6 @@
 @extends("front.layout.app")
+@section("title", $provider_pages->customer_login_heading)
+@section("heading", $provider_pages->customer_login_heading)
 @section("content")
 <div class="page-content">
     <div class="container">
@@ -21,7 +23,7 @@
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary bg-website">Login</button>
-                        <a href="{{ route("customer.reset") }}" class="primary-color">Forget Password?</a>
+                        <a href="{{ route("customer.forget") }}" class="primary-color">Forget Password?</a>
                     </div>
                     <div class="mb-3">
                         <a href="{{ route("customer.signup") }}" class="primary-color">New User? Make Registration</a>

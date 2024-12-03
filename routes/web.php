@@ -159,17 +159,21 @@ Route::prefix("admin")->middleware(["admin:admin"])->group(function () {
     Route::put("page/policy/update", [AdminPageController::class, "update_policy"])->name("admin.page.policy.update");
     Route::get("page/faq/edit",[AdminPageController::class, "edit_faq"])->name("admin.page.faq.edit");
     Route::put("page/faq/update", [AdminPageController::class, "update_faq"])->name("admin.page.faq.update");
+    Route::get("page/customer/edit", [AdminPageController::class, "edit_customer"])->name("admin.page.customer.edit");
+    Route::put("page/customer/update", [AdminPageController::class, "update_customer"])->name("admin.page.customer.update");
 });
 
 Route::prefix("customer")->group(function () {
     /* login */
     Route::get("signup", [CustomerLoginController::class, "signup"])->name("customer.signup");
-    Route::get("login", [CustomerLoginController::class, "login"])->name("customer.login");
-    Route::get("reset", [CustomerLoginController::class, "reset"])->name("customer.reset");
-    Route::post("reset/submit", [CustomerLoginController::class, "submit_reset"])->name("customer.reset.submit");
-    Route::post("login/submit", [CustomerLoginController::class, "submit_login"])->name("customer.login.submit");
     Route::post("signup/submit", [CustomerLoginController::class, "submit_signup"])->name("customer.signup.submit");
-    Route::get("signup/verification/{token}/{email}", [CustomerLoginController::class, "verification"])->name("customer.signup.verification");
+    Route::get("signup/verification/{token}/{email}", [CustomerLoginController::class, "verification_signup"])->name("customer.signup.verification");
+    Route::get("login", [CustomerLoginController::class, "login"])->name("customer.login");
+    Route::post("login/submit", [CustomerLoginController::class, "submit_login"])->name("customer.login.submit");
+    Route::get("forget", [CustomerLoginController::class, "forget"])->name("customer.forget");
+    Route::post("forget/submit", [CustomerLoginController::class, "submit_forget"])->name("customer.forget.submit");
+    Route::get("reset/{token}/{email}", [CustomerLoginController::class, "reset"])->name("customer.reset");
+    Route::post("reset/submit", [CustomerLoginController::class, "submit_reset"])->name("customer.reset.submit");
     Route::get("logout", [CustomerLoginController::class, "logout"])->name("customer.logout");
 });
 
