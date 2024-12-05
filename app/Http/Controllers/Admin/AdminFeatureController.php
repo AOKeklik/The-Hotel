@@ -9,17 +9,12 @@ use Illuminate\Http\Request;
 class AdminFeatureController extends Controller
 {
     public function index () {
-        $features = Feature::orderBy("id", "DESC")->paginate(12);
+        $features = Feature::orderBy("id", "DESC")->get();
         return view("admin.features", compact("features"));
     }
 
     public function add_feature () {
         return view("admin.feature_add");
-    }
-
-    public function edit_feature ($feature_id) {
-        $feature = Feature::find($feature_id);
-        return view("admin.feature_edit", compact("feature"));
     }
 
     public function store_feature (Request $request) {
@@ -42,9 +37,18 @@ class AdminFeatureController extends Controller
         return redirect()->route("admin.features")->with("status", "Feature has been created successfully!");
     }
 
+    public function edit_feature ($feature_id) {
+        $feature = Feature::find($feature_id);
+
+        if(!$feature)
+            return redirect()->back()->with("error","Feature not found!");
+
+        return view("admin.feature_edit", compact("feature"));
+    }
+
     public function update_feature (Request $request) {
         $request->validate([
-            "feature_id" => "required|string|exists:features,id",
+            // "feature_id" => "required|string|exists:features,id",
             "icon" => "required|string",
             "heading" => "required|string",
             "text" => "nullable|string",
@@ -70,10 +74,10 @@ class AdminFeatureController extends Controller
         $feature = Feature::find($feature_id);
 
         if  (!$feature)
-            return redirect()->route("admin.features")->with("error","Feature not found!");
+            return redirect()->back()->with("error","Feature not found!");
 
         $feature->delete();
 
-        return redirect()->route("admin.features")->with("status", "Feature has been deleted successfully!");
+        return redirect()->back()->with("status", "Feature has been deleted successfully!");
     }
 }

@@ -8,8 +8,8 @@
                         <div class="card card-primary border-box">
                             <div class="card-header card-header-auth">
                                 <h4 class="text-center">Admin Panel Login</h4>
-                                @if(Session::has("error"))<p class="text-danger m-0">{{ Session::get("error") }}</p>@endif
-                                @if(Session::has("status")) <p class="text-success m-0" style="line-height: 1.1">{{ Session::get("status") }}</p> @endif
+                                @if(Session::has("status")) <p class="alert alert-success p-1 text-center">{{ Session::get("status") }}</p> @endif
+                                @if(Session::has("error"))<p class="alert alert-danger p-1 text-center">{{ Session::get("error") }}</p>@endif
                             </div>
                             <div class="card-body card-body-auth">
                                 <form method="POST" action="{{ route("admin.login.submit") }}">
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div>
-                                            <a href="{{ route("admin.login.forget") }}">
+                                            <a href="{{ route("admin.forget") }}">
                                                 Forget Password?
                                             </a>
                                         </div>

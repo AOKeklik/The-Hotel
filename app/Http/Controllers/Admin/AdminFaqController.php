@@ -9,21 +9,12 @@ use Illuminate\Http\Request;
 class AdminFaqController extends Controller
 {
     public function index () {
-        $faqs = Faq::orderBy("id","DESC")->paginate(12);
+        $faqs = Faq::orderBy("id","DESC")->get();
         return view("admin.faqs",compact("faqs"));
     }
 
     public function add_faq () {
         return view("admin.faq_add");
-    }
-
-    public function edit_faq ($faq_id) {
-        $faq = Faq::find($faq_id);
-
-        if(!$faq)
-            return redirect()->route("admin.faqs")->with("error","Faq not found!");
-
-        return view("admin.faq_edit", compact("faq"));
     }
 
     public function store_faq (Request $request) {
@@ -40,6 +31,15 @@ class AdminFaqController extends Controller
         $faq->save();
 
         return redirect()->route("admin.faqs")->with("status","Faq has been created successfully!");
+    }
+    
+    public function edit_faq ($faq_id) {
+        $faq = Faq::find($faq_id);
+
+        if(!$faq)
+            return redirect()->back()->with("error","Faq not found!");
+
+        return view("admin.faq_edit", compact("faq"));
     }
 
     public function update_faq (Request $request) {
@@ -66,10 +66,10 @@ class AdminFaqController extends Controller
         $faq = Faq::find($faq_id);
 
         if(!$faq)
-            return redirect()->route("admin.faqs")->with("error","Faq not found!");
+            return redirect()->back()->with("error","Faq not found!");
 
         $faq->delete();
 
-        return redirect()->route("admin.faqs")->with("status","Faq has been deleted successfully!");
+        return redirect()->back()->with("status","Faq has been deleted successfully!");
     }
 }
