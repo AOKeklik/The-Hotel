@@ -1,10 +1,6 @@
 @extends("customer.layout.app")
 @section("title","Dashboard")
-@section("button")
-<li class="nav-link">
-    <a href="{{ route("front.index") }}" target="_blank" class="btn btn-warning">Front End</a>
-</li>
-@endsection
+@section("heading","Dashboard")
 @section("content")
 <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-6 col-12">

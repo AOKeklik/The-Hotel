@@ -2,7 +2,6 @@
 
 <div id="app">
     <div class="main-wrapper">
-
         <div class="navbar-bg"></div>
         <nav class="navbar navbar-expand-lg main-navbar">
             <form class="form-inline mr-auto">
@@ -12,11 +11,20 @@
                 </ul>
             </form>
             <ul class="navbar-nav navbar-right">
-                @yield("button")
-                <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                    <div class="d-sm-none d-lg-inline-block">John Doe</div></a>
+                <li class="nav-link">
+                    <a href="{{ route("front.index") }}" target="_blank" class="btn btn-warning">Front End</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                        @if(Auth::guard("customer")->user()->photo)
+                            <img alt="image" src="{{ asset("uploads/customer") }}/{{ Auth::guard('customer')->user()->photo }}" class="rounded-circle mr-1">
+                        @else
+                            <img alt="image" src="{{ asset("uploads/user.jpg") }}" class="rounded-circle mr-1">
+                        @endif
+                        <div class="d-sm-none d-lg-inline-block">John Doe</div></a>
+                    </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="profile.html" class="dropdown-item has-icon">
+                        <a href="{{ route("customer.profile.edit") }}" class="dropdown-item has-icon">
                             <i class="far fa-user"></i> Edit Profile
                         </a>
                         <a href="{{ route("customer.logout") }}" class="dropdown-item has-icon text-danger">
@@ -33,6 +41,7 @@
             <section class="section">
                 <div class="section-header">
                     <h1>@yield("heading","Dashboard")</h1>
+                    @yield("button")
                 </div>
                 @yield("content")
             </section>

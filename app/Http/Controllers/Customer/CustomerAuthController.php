@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class CustomerLoginController extends Controller
+class CustomerAuthController extends Controller
 {
     public function login () {
-        return view("customer.login");
+        return view("customer.auth_login");
     }
 
     public function submit_login (Request $request) {
@@ -34,7 +34,7 @@ class CustomerLoginController extends Controller
     }
 
     public function signup () {
-        return view("customer.signup");
+        return view("customer.auth_signup");
     }
 
     public function submit_signup (Request $request) {
@@ -83,7 +83,7 @@ class CustomerLoginController extends Controller
     }
 
     public function forget () {
-        return view("customer.forget");
+        return view("customer.auth_forget");
     }
 
     public function submit_forget (Request $request) {
@@ -122,7 +122,7 @@ class CustomerLoginController extends Controller
         if(!$customer)
             return redirect()->route("customer.forget")->with("error", "In valid token!");
 
-        return view("customer.reset", compact("token","email"));
+        return view("customer.auth_reset", compact("token","email"));
     }
 
     public function submit_reset (Request $request) {
