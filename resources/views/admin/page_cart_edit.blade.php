@@ -1,7 +1,7 @@
 @extends("admin.layout.app")
 @section("title","Edit Cart")
 @section("heading","Edit Cart")
-@section("link",route("front.index"))
+@section("link",route("front.cart"))
 @section("button")
 <div class="ml-auto">
     <a href="{{ route("admin.index") }}" class="btn btn-primary"><i class="fa fa-eye"></i> Dashboard</a>

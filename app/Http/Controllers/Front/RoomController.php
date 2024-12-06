@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class RoomController extends Controller
 {
     public function index () {
-        $rooms = Room::orderBy("id","DESC")->paginate(12);
+        $rooms = Room::orderBy("id","DESC")->get();
         return view("front.rooms",compact("rooms"));
     }
     public function room ($room_id) {

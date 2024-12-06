@@ -27,6 +27,7 @@ use App\Http\Controllers\Front\PolicyController;
 use App\Http\Controllers\Front\RoomController;
 use App\Http\Controllers\Front\SubscriberController;
 use App\Http\Controllers\Front\TermsController;
+use App\Http\Controllers\Front\BookingController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("admin")->group(function () {
@@ -208,5 +209,10 @@ Route::prefix("/")->group( function () {
     Route::get("faq", [FaqController::class, "index"])->name("front.faq");
     Route::get("terms", [TermsController::class, "index"])->name("front.terms");
     Route::get("policy", [PolicyController::class, "index"])->name("front.policy");
+
+    Route::get("cart", [BookingController::class, "cart"])->name("front.cart");
+    Route::post("cart/submit", [BookingController::class, "submit_cart"])->name("front.cart.submit");
+    Route::get("cart/item/delete/{item_id}", [BookingController::class, "delete_item_cart"])->name("front.cart.item.delete");
+    Route::get("cart/checkout", [BookingController::class, "checkout"])->name("front.checkout");
 });
 

@@ -12,10 +12,10 @@
             <div class="col-md-6 right-side">
                 <ul class="right">
                     @if($provider_pages->cart_status == 1) 
-                        <li class="menu"><a href="cart.html">{{ $provider_pages->cart_heading }}</a></li>
+                        <li class="menu"><a href="{{ route("front.cart") }}">{{ $provider_pages->cart_heading }}</a></li>
                     @endif
                     @if($provider_pages->checkout_status == 1) 
-                        <li class="menu"><a href="checkout.html">{{ $provider_pages->checkout_heading }}</a></li>
+                        <li class="menu"><a href="{{ route("front.checkout") }}">{{ $provider_pages->checkout_heading }}</a></li>
                     @endif
                     @if($provider_pages->customer_signup_status == 1)
                         <li class="menu"><a href="{{ route("customer.signup") }}">{{ $provider_pages->customer_signup_heading }}</a></li>
