@@ -147,6 +147,24 @@
                 })
             }
         </script>
+        @if(Session::has("error"))
+            <script>
+                iziToast.error({
+                    title: "",
+                    position: "topRight",
+                    message: "{{ Session::get("error") }}"
+                })
+            </script>
+        @endif
+        @if(Session::has("status"))
+            <script>
+                iziToast.success({
+                    title: "",
+                    position: "topRight",
+                    message: "{{ Session::get("status") }}"
+                })
+            </script>
+        @endif
         @stack("scripts")
     </body>
 </html>

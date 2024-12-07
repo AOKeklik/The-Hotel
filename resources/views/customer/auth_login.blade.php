@@ -5,8 +5,6 @@
 <div class="page-content">
     <div class="container">
         <div class="row justify-content-center">
-            @if(Session::has("status")) <p class="alert alert-success p-1 text-center">{{ Session::get("status") }}</p>  @endif
-            @if(Session::has("error")) <p class="alert alert-danger p-1 text-center">{{ Session::get("error") }}</p> @endif
             <div class="col-4">
                 <form method="POST" action="{{ route("customer.login.submit") }}" class="login-form">
                     @csrf

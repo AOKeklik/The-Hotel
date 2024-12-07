@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="{{ asset('dist-front/css/font-awesome.min.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/daterangepicker.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/meanmenu.css') }}">
+        <link rel="stylesheet" href="{{ asset('dist-front/css/iziToast.min.css') }}">
         <link rel="stylesheet" href="{{ asset('dist-front/css/style.css') }}">
         
         <!-- All Javascripts -->
@@ -39,6 +40,7 @@
         <script src="{{ asset('dist-front/js/daterangepicker.min.js') }}"></script>
         <script src="{{ asset('dist-front/js/sticky_sidebar.js') }}"></script>
         <script src="{{ asset('dist-front/js/jquery.meanmenu.js') }}"></script>
+        <script src="{{ asset('dist-front/js/iziToast.min.js') }}"></script>
 
         <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500&display=swap" rel="stylesheet">
         

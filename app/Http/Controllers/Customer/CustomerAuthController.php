@@ -145,7 +145,7 @@ class CustomerAuthController extends Controller
     public function logout () {
         Auth::guard("customer")->logout();
 
-        return redirect()->route("customer.login");
+        return redirect()->route("customer.login")->with("status","Logout successfully!");
     }
         
 }

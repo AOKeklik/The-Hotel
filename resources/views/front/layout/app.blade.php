@@ -17,11 +17,15 @@
                     @if($provider_pages->checkout_status == 1) 
                         <li class="menu"><a href="{{ route("front.checkout") }}">{{ $provider_pages->checkout_heading }}</a></li>
                     @endif
-                    @if($provider_pages->customer_signup_status == 1)
-                        <li class="menu"><a href="{{ route("customer.signup") }}">{{ $provider_pages->customer_signup_heading }}</a></li>
-                    @endif
-                    @if($provider_pages->customer_login_status == 1)
-                        <li class="menu"><a href="{{ route("customer.login") }}">{{ $provider_pages->customer_login_heading }}</a></li>
+                    @if(Auth::guard("customer")->check())
+                        <li class="menu"><a href="{{ route("customer.index") }}">Dashboard</a></li>
+                    @else   
+                        @if($provider_pages->customer_signup_status == 1)
+                            <li class="menu"><a href="{{ route("customer.signup") }}">{{ $provider_pages->customer_signup_heading }}</a></li>
+                        @endif
+                        @if($provider_pages->customer_login_status == 1)
+                            <li class="menu"><a href="{{ route("customer.login") }}">{{ $provider_pages->customer_login_heading }}</a></li>
+                        @endif
                     @endif
                 </ul>
             </div>

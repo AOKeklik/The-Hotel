@@ -27,8 +27,6 @@
             @method("POST")
             <div class="inner">
                 <div class="row">
-                    @if(Session::has("status")) <p class="alert alert-success p-1 text-center">{{ Session::get("status") }}</p> @endif
-                    @if(Session::has("error")) <p class="alert alert-danger p-1 text-center">{{ Session::get("error") }}</p> @endif
                     <div class="col-lg-3">
                         <div class="form-group">
                             <select name="room_id" class="form-select">

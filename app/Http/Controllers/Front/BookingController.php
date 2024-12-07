@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Room;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -10,8 +11,8 @@ use Illuminate\Http\Request;
 class BookingController extends Controller
 {
     public function cart () {
-        // print_r(Session()->get("cart"));        
-        return view("front.cart");
+        // print_r(Session()->get("cart"));
+        return view("front.booking_cart");
     }
 
     public function submit_cart (Request $request) {
@@ -31,7 +32,7 @@ class BookingController extends Controller
         $end = \DateTime::createFromFormat("d/m/Y",$checkout);
         $difference = $start->diff($end)->days;
 
-        Session()->push("cart", [
+        Session()->push("cart", (object) [
             "cart_room_id" => $request->room_id,
             "cart_room_photo" => $room->featured_photo,
             "cart_room_name" => $room->name,
@@ -64,6 +65,53 @@ class BookingController extends Controller
     }
 
     public function checkout () {
-        return view("front.checkout");
+        
+        if(!Session()->has("cart"))
+            return redirect()->back()->with("error","Cart is empty!");
+    
+        if(!Auth()->guard("customer")->check())
+            return redirect()->route("customer.login")->with("error","Please log in to continue.");
+
+    // dd(Session()->get("billing"));
+        $customer = Session()->has("billing") 
+            ? Session()->get("billing")
+            : Auth()->guard("customer")->user();
+
+        return view("front.booking_checkout",compact("customer"));
+    }
+
+    public function submit_checkout (Request $request) {
+
+        if(!Auth()->guard("customer")->check())
+            return redirect()->route("customer.login")->with("error","Please log in to continue.");
+
+        $request->validate([
+            "name" => "required|string",
+            "email" => "required|email",
+            "phone" => "required|string",
+            "country" => "required|string",
+            "address" => "required|string",
+            "state" => "required|string",
+            "city" => "required|string",
+            "zip" => "required|string",
+        ]);
+
+        Session()->put("billing", (object) [
+            "name" => $request->name,
+            "email" => $request->email,
+            "phone" => $request->phone,
+            "country" => $request->country,
+            "address" => $request->address,
+            "state" => $request->state,
+            "city" => $request->city,
+            "zip" => $request->zip,
+        ]);
+
+        return redirect()->route("front.payment");
+    }
+
+    public function payment () {
+        $billing = Session()->get("billing");
+        return view("front.booking_payment",compact("billing"));
     }
 }

@@ -21,7 +21,7 @@
                         @else
                             <img alt="image" src="{{ asset("uploads/user.jpg") }}" class="rounded-circle mr-1">
                         @endif
-                        <div class="d-sm-none d-lg-inline-block">John Doe</div></a>
+                        <div class="d-sm-none d-lg-inline-block">{{ Auth::guard("customer")->user()->name }}</div></a>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="{{ route("customer.profile.edit") }}" class="dropdown-item has-icon">
