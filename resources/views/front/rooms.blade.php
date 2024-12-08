@@ -24,9 +24,6 @@
                 </div>
             @endforeach
         </div>
-        <div class="row">
-            <div class="col-12">{{ $rooms->links("pagination::bootstrap-5") }}</div>
-        </div>
     </div>
 </div>
 @endsection

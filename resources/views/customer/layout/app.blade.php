@@ -19,7 +19,7 @@
                         @if(Auth::guard("customer")->user()->photo)
                             <img alt="image" src="{{ asset("uploads/customer") }}/{{ Auth::guard('customer')->user()->photo }}" class="rounded-circle mr-1">
                         @else
-                            <img alt="image" src="{{ asset("uploads/user.jpg") }}" class="rounded-circle mr-1">
+                            <img alt="image" src="{{ asset("uploads/user.png") }}" class="rounded-circle mr-1">
                         @endif
                         <div class="d-sm-none d-lg-inline-block">{{ Auth::guard("customer")->user()->name }}</div></a>
                     </a>

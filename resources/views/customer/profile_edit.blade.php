@@ -23,7 +23,7 @@
                                     <label>Photo</label>
                                     @if(empty($profile->photo))
                                         <div style="display:none;width:200px;padding:10px;">
-                                            <img width="100%" src="" alt="">
+                                            <img id="user-img" width="100%" src="" alt="">
                                         </div>
                                     @else
                                         <div style="width:200px;padding:10px;">
@@ -100,7 +100,7 @@
     <script>
         function handlerChangeImage(e) {
             const parent = e.target.closest(".form-group.mb-3")
-            const img = parent.querySelector("img")
+            const img = document.getElementById("user-img")
             const files = e.target.files
 
             if(!img) return

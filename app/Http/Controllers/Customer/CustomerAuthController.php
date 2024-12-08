@@ -64,7 +64,7 @@ class CustomerAuthController extends Controller
         
         \Mail::to($request->email)->send(new Websitemail($subject,$message));
 
-        return redirect()->back()->with("status","To complete the signup, please check your email adn click on the link!");
+        return redirect()->route("customer.login")->with("status","To complete the signup, please check your email and click on the link!");
     }
 
     public function verification_signup ($token, $email) {
@@ -72,7 +72,7 @@ class CustomerAuthController extends Controller
 
         if($customer) {
             $customer->token = "";
-            $customer->stauts = 1;
+            $customer->status = 1;
 
             $customer->update();
 

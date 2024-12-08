@@ -210,11 +210,13 @@ Route::prefix("/")->group( function () {
     Route::get("terms", [TermsController::class, "index"])->name("front.terms");
     Route::get("policy", [PolicyController::class, "index"])->name("front.policy");
 
+    /* booking */
     Route::get("cart", [BookingController::class, "cart"])->name("front.cart");
     Route::post("cart/submit", [BookingController::class, "submit_cart"])->name("front.cart.submit");
     Route::get("cart/item/delete/{item_id}", [BookingController::class, "delete_item_cart"])->name("front.cart.item.delete");
     Route::get("checkout", [BookingController::class, "checkout"])->name("front.checkout");
     Route::post("checkout/submit", [BookingController::class, "submit_checkout"])->name("front.checkout.submit");
     Route::get("payment", [BookingController::class, "payment"])->name("front.payment");
+    Route::post("payment/stripe", [BookingController::class, "stripe"])->name("front.payment.stripe");
 });
 

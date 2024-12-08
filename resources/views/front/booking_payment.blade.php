@@ -17,12 +17,32 @@
 
                         <div class="paypal mt_20">
                             <h4>Pay with PayPal</h4>
-                            <p>Write necessary code here</p>
+                            <div id="paypal-button"></div>
                         </div>
 
                         <div class="stripe mt_20">
                             <h4>Pay with Stripe</h4>
-                            <p>Write necessary code here</p>
+                            @php
+                                $cents = array_sum(array_column(Session::get("cart"),"cart_subtotal")) * 100;
+                                $stripe_public_key = env("STRIPE_PUBLIC_KEY");
+                                $customer_email = Auth::guard("customer")->user()->email;
+                            @endphp
+                            <form action="{{ route('front.payment.stripe') }}" method="post">
+                                @csrf
+                                @method("POST")
+                                <input type="hidden" name="cents" value="{{ $cents }}">
+                                <script
+                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                    data-key="{{ $stripe_public_key }}"
+                                    data-amount="{{ $cents }}"
+                                    data-name="{{ env('APP_NAME') }}"
+                                    data-description=""
+                                    data-image="{{ asset('uploads/stripe.png') }}"
+                                    data-currency="usd"
+                                    data-email="{{ $customer_email }}"
+                                >
+                                </script>
+                            </form>
                         </div>
                     </div>
                     <div class="col-12 checkout-right">
@@ -77,9 +97,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
             <div class="col-lg-4 col-md-6 checkout-right">
                 <div class="inner">
                     <h4 class="mb_10">Cart Details</h4>
@@ -107,9 +125,48 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 @endsection
+@php
+    $total_price = array_sum(array_column(Session::get("cart"),"cart_subtotal"));
+    $client = 'ARw2VtkTvo3aT7DILgPWeSUPjMK_AS5RlMKkUmB78O8rFCJcfX6jFSmTDpgdV3bOFLG2WE-s11AcCGTD';
+@endphp
+@push("scripts")
+    {{-- paypal --}}
+    <script>
+        paypal.Button.render({
+            env: 'sandbox',
+            client: {
+                sandbox: '{{ $client }}',
+                production: '{{ $client }}'
+            },
+            locale: 'en_US',
+            style: {
+                size: 'medium',
+                color: 'blue',
+                shape: 'rect',
+            },
+            // Set up a payment
+            payment: function (data, actions) {
+                return actions.payment.create({
+                    redirect_urls:{
+                        return_url: '{{ url("payment/paypal/$total_price") }}'
+                    },
+                    transactions: [{
+                        amount: {
+                            total: '{{ $total_price }}',
+                            currency: 'USD'
+                        }
+                    }]
+                });
+            },
+            // Execute the payment
+            onAuthorize: function (data, actions) {
+                return actions.redirect();
+            }
+        }, '#paypal-button');
+    </script>
+@endpush
