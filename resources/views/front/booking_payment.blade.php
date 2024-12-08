@@ -23,7 +23,7 @@
                         <div class="stripe mt_20">
                             <h4>Pay with Stripe</h4>
                             @php
-                                $cents = array_sum(array_column(Session::get("cart"),"cart_subtotal")) * 100;
+                                $cents = array_sum(array_column(Session::get("cart"),"cart_subtotal"));
                                 $stripe_public_key = env("STRIPE_PUBLIC_KEY");
                                 $customer_email = Auth::guard("customer")->user()->email;
                             @endphp
@@ -34,7 +34,7 @@
                                 <script
                                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                     data-key="{{ $stripe_public_key }}"
-                                    data-amount="{{ $cents }}"
+                                    data-amount="{{ $cents * 100}}"
                                     data-name="{{ env('APP_NAME') }}"
                                     data-description=""
                                     data-image="{{ asset('uploads/stripe.png') }}"

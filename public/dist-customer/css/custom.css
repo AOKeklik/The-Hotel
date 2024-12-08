@@ -406,3 +406,10 @@ hr.invoice-above-table {
 .tox .tox-notification {
     display: none !important;
 }
+/* table */
+.table-responsive table {
+    min-width: 70rem;
+}
+.table-responsive table tbody td:last-child{
+    white-space: nowrap
+}

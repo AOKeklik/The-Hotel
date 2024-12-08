@@ -9,7 +9,10 @@
 
         <ul class="sidebar-menu">
 
-            <li class="active"><a class="nav-link" href="index.html"><i class="fas fa-hand-point-right"></i> <span>Dashboard</span></a></li>
+            <li class="@if(Request::is("customer")) active @endif"><a class="nav-link" href="{{ route("customer.index") }}"><i class="fas fa-hand-point-right"></i> <span>Dashboard</span></a></li>
+            <li class="@if(Route::is("customer.orders")) active @endif"><a class="nav-link" href="{{ route("customer.orders") }}"><i class="fas fa-hand-point-right"></i> Orders</a></li>
+
+
 
             <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Dropdown Items</span></a>

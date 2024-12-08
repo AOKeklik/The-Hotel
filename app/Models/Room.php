@@ -13,4 +13,8 @@ class Room extends Model
     public function roomPhotos () {
         return $this->hasMany(RoomPhoto::class);
     }
+
+    public function orderDetails () {
+        return $this->hasMany(OrderDetail::class);
+    }
 }

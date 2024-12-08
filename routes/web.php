@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Customer\CustomerHomeController;
 use App\Http\Controllers\Customer\CustomerAuthController;
+use App\Http\Controllers\Customer\CustomerOrderController;
 use App\Http\Controllers\Customer\CustomerProfileController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
@@ -186,6 +187,9 @@ Route::prefix("customer")->middleware(["customer:customer"])->group( function ()
     /* profile */
     Route::get("profile/edit", [CustomerProfileController::class, "edit_profile"])->name("customer.profile.edit");
     Route::put("profile/update", [CustomerProfileController::class, "update_profile"])->name("customer.profile.update");
+
+    Route::get("orders", [CustomerOrderController::class, "index"])->name("customer.orders");
+    Route::get("order/{order_id}", [CustomerOrderController::class, "order"])->name("customer.order");
 });
 
 Route::prefix("/")->group( function () {
