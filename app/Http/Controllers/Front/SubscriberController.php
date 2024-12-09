@@ -34,9 +34,7 @@ class SubscriberController extends Controller
 
         $subject = "Subscriber Verification";
         $message = "Please click on the link below to confirm subscription: <br>";
-        $message .= "<a href='{$verification_link}' >";
-        $message .= $verification_link;
-        $message .= "</a>";
+        $message .= "<a href='{$verification_link}' >Click!</a>";
         
         \Mail::to($request->email)->send(new Websitemail($subject,$message));
 

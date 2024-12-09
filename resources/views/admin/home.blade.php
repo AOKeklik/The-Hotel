@@ -6,30 +6,45 @@
     <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
-                <div class="card-icon bg-primary">
-                    <i class="fa fa-user"></i>
+                <div class="card-icon bg-success">
+                    <i class="fa fa-home"></i>
                 </div>
                 <div class="card-wrap">
                     <div class="card-header">
-                        <h4>Total News Categories</h4>
+                        <h4>Total Rooms</h4>
                     </div>
                     <div class="card-body">
-                        12
+                        {{ $total_rooms }}
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
-                <div class="card-icon bg-danger">
-                    <i class="fa fa-user"></i>
+                <div class="card-icon bg-primary">
+                    <i class="fa fa-bullhorn"></i>
                 </div>
                 <div class="card-wrap">
                     <div class="card-header">
-                        <h4>Total News</h4>
+                        <h4>Total Completed Orders</h4>
                     </div>
                     <div class="card-body">
-                        122
+                        {{ $completed_orders }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-primary">
+                    <i class="fa fa-bullhorn"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Pending Orders</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ $pending_orders }}
                     </div>
                 </div>
             </div>
@@ -37,14 +52,44 @@
         <div class="col-lg-4 col-md-6 col-sm-6 col-12">
             <div class="card card-statistic-1">
                 <div class="card-icon bg-warning">
-                    <i class="fa fa-bullhorn"></i>
+                    <i class="fa fa-user"></i>
                 </div>
                 <div class="card-wrap">
                     <div class="card-header">
-                        <h4>Total Users</h4>
+                        <h4>Total Active Customers</h4>
                     </div>
                     <div class="card-body">
-                        45
+                        {{ $active_customers }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-warning">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Pending Customers</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ $pending_customers }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-warning">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Subscribers</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ $total_subscribers }}
                     </div>
                 </div>
             </div>

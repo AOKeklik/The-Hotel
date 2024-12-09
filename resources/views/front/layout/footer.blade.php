@@ -87,7 +87,6 @@
                                 <div class="form-group">
                                     <input type="text" name="email" class="form-control">
                                     <p class="text-danger m-0 alert-error-email"></p>
-                                    <p class="text-success m-0 alert-success-email"></p>
                                 </div>
                                 <div class="form-group">
                                     <input onclick="handlerSubmitSubscriberForm(event)" type="submit" class="btn btn-primary" value="Subscribe Now">
@@ -109,7 +108,6 @@
     
                 const form = e.target.closest("form")
                 const email = form.querySelector("input[name=email]")
-                const loader = document.getElementById("loader")
     
                 if (!email) return
     
@@ -117,9 +115,7 @@
                 formData.append("_token", "{{ csrf_token() }}")
                 formData.append("email",email.value.trim())
 
-                email.value = ''
-                loader.style.display = "block"    
-                email.nextElementSibling.innerHTML = ''            
+                jQuery("#loader").show()          
     
                 $.ajax({
                     url: "{{ route('front.subscriber.submit') }}",
@@ -129,8 +125,7 @@
                     data: formData,
                     success: data => {
                         
-                        // console.log(data)
-                        loader.style.display = "none"
+                        jQuery("#loader").hide()
                         
                         if (data.ok === false)
                             Object.keys(data.error_message).forEach(msg => {
@@ -140,8 +135,12 @@
                             })
     
                         if (data.ok === true) {
-                            message = document.querySelector(".alert-success-email")
-                            message.textContent = data.message
+                            email.value = ''
+                            iziToast.success({
+                                title: "",
+                                position: "topRight",
+                                message: data.message,
+                            })
                         }    
                     }
                 })
