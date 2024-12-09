@@ -9,9 +9,20 @@
 
         <ul class="sidebar-menu">
 
+            {{-- <li class="active"><a class="nav-link" href="index.html"><i class="fas fa-hand-point-right"></i> <span>Dashboard</span></a></li>
+            <li class="nav-item dropdown active">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Dropdown Items</span></a>
+                <ul class="dropdown-menu">
+                    <li class="active"><a class="nav-link" href=""><i class="fas fa-angle-right"></i> Item 1</a></li>
+                    <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i> Item 2</a></li>
+                </ul>
+            </li> --}}
+
             <li class="@if(Route::is("admin.index")) active @endif"><a class="nav-link" href="{{ route('admin.index') }}"><i class="fa fa-hand-o-right"></i> <span>Dashboard</span></a></li>
             
             <li class="@if(Route::is("admin.customers")) active @endif"><a class="nav-link" href="{{ route('admin.customers') }}"><i class="fa fa-hand-o-right"></i> <span>Customers</span></a></li>
+
+            <li class="@if(Route::is("admin.orders")) active @endif"><a class="nav-link" href="{{ route("admin.orders") }}"><i class="fa fa-hand-o-right"></i> <span>Orders</span></a></li>
 
             <li class="nav-item dropdown @if(Request::is("admin/slides") || Request::is("admin/slide/add")) active @endif">
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Slides</span></a>

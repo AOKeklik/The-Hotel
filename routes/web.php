@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminCustomerController;
+use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminPostController;
@@ -55,6 +56,11 @@ Route::prefix("admin")->middleware(["admin:admin"])->group(function () {
     /* customers */
     Route::get("customers", [AdminCustomerController::class, "index"])->name("admin.customers");
     Route::get("customer/update/status/{customer_id}", [AdminCustomerController::class, "update_status_customer"])->name("admin.customer.update.status");
+
+    /* orders */
+    Route::get("orders", [AdminOrderController::class, "index"])->name("admin.orders");
+    Route::get("order/{order_id}", [AdminOrderController::class, "order"])->name("admin.order");
+    Route::get("order/delete/{order_id}", [AdminOrderController::class, "delete_order"])->name("admin.order.delete");
 
     /* slides */
     Route::get("slides", [AdminSlideController::class, "index"])->name("admin.slides");
