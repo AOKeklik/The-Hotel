@@ -1,6 +1,11 @@
 @extends("admin.layout.app")
 @section("title", "Edit Profile")
 @section("heading", "Edit Profile")
+@section("button")
+<div class="ml-auto">
+    <a href="{{ route("admin.index") }}" class="btn btn-primary"><i class="fa fa-eye"></i> Dashboards</a>
+</div>
+@endsection
 @section("content")
 <div class="section-body">
     <div class="row">

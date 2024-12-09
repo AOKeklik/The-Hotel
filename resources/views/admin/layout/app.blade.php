@@ -16,7 +16,11 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                        <img alt="image" src="{{ asset('uploads/user.jpg') }}" class="rounded-circle mr-1">
+                        @if(!empty(Auth::guard("admin")->user()->photo))
+                            <img alt="image" src="{{ asset('uploads/admin/') }}/{{ Auth::guard("admin")->user()->photo }}" class="rounded-circle mr-1">
+                        @else
+                            <img alt="image" src="{{ asset('uploads/user.png') }}" class="rounded-circle mr-1">
+                        @endif
                         <div class="d-sm-none d-lg-inline-block">{{ Auth::guard("admin")->user()->name }}</div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">

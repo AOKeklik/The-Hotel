@@ -10,6 +10,8 @@
         <ul class="sidebar-menu">
 
             <li class="@if(Route::is("admin.index")) active @endif"><a class="nav-link" href="{{ route('admin.index') }}"><i class="fa fa-hand-o-right"></i> <span>Dashboard</span></a></li>
+            
+            <li class="@if(Route::is("admin.customers")) active @endif"><a class="nav-link" href="{{ route('admin.customers') }}"><i class="fa fa-hand-o-right"></i> <span>Customers</span></a></li>
 
             <li class="nav-item dropdown @if(Request::is("admin/slides") || Request::is("admin/slide/add")) active @endif">
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Slides</span></a>

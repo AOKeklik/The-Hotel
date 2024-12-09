@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AdminCustomerController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminPostController;
@@ -50,6 +51,10 @@ Route::prefix("admin")->middleware(["admin:admin"])->group(function () {
     /* profile */
     Route::get("profile", [AdminProfileController::class, "index"])->name("admin.profile");
     Route::put("profile/submit", [AdminProfileController::class, "submit_profile"])->name("admin.profile.submit");
+
+    /* customers */
+    Route::get("customers", [AdminCustomerController::class, "index"])->name("admin.customers");
+    Route::get("customer/update/status/{customer_id}", [AdminCustomerController::class, "update_status_customer"])->name("admin.customer.update.status");
 
     /* slides */
     Route::get("slides", [AdminSlideController::class, "index"])->name("admin.slides");
