@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminRoomController;
+use App\Http\Controllers\Admin\AdminSettingController;
 use App\Http\Controllers\Admin\AdminSlideController;
 use App\Http\Controllers\Admin\AdminSubscriberController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
@@ -48,6 +49,10 @@ Route::prefix("admin")->group(function () {
 
 Route::prefix("admin")->middleware(["admin:admin"])->group(function () {
     Route::get("", [AdminHomeController::class, "index"])->name("admin.index");
+
+    /* setting */
+    Route::get("setting/edit", [AdminSettingController::class, "edit_setting"])->name("admin.setting.edit");
+    Route::put("setting/update", [AdminSettingController::class, "update_setting"])->name("admin.setting.update");
 
     /* profile */
     Route::get("profile", [AdminProfileController::class, "index"])->name("admin.profile");

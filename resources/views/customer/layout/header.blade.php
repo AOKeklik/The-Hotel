@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
 
-    <link rel="icon" type="image/png" href="{{ asset("uploads/favicon.png") }}">
+    <link rel="icon" type="image/png" href="{{ asset("uploads/setting/$provider_setting->favicon") }}">
 
     <title>@yield("title","Customer Panel")</title>
 

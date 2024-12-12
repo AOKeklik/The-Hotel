@@ -46,33 +46,26 @@
                                 <div class="left">
                                     <i class="fa fa-map-marker"></i>
                                 </div>
-                                <div class="right">
-                                    34 Antiger Lane,<br>
-                                    PK Lane, USA, 12937
-                                </div>
-                            </div>
-                            <div class="list-item">
-                                <div class="left">
-                                    <i class="fa fa-volume-control-phone"></i>
-                                </div>
-                                <div class="right">
-                                    contact@arefindev.com
-                                </div>
+                                <div class="right">{{ $provider_setting->footer_address }}</div>
                             </div>
                             <div class="list-item">
                                 <div class="left">
                                     <i class="fa fa-envelope-o"></i>
                                 </div>
-                                <div class="right">
-                                    122-222-1212
+                                <div class="right">{{ $provider_setting->footer_email }}</div>
+                            </div>
+                            <div class="list-item">
+                                <div class="left">
+                                    <i class="fa fa-volume-control-phone"></i>
                                 </div>
+                                <div class="right">{{ $provider_setting->footer_phone }}</div>
                             </div>
                             <ul class="social">
-                                <li><a href=""><i class="fa fa-facebook-f"></i></a></li>
-                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                <li><a href=""><i class="fa fa-pinterest-p"></i></a></li>
-                                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="{{ $provider_setting->footer_facebook }}"><i class="fa fa-facebook-f"></i></a></li>
+                                <li><a href="{{ $provider_setting->footer_twitter }}"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="{{ $provider_setting->footer_pinterest }}"><i class="fa fa-pinterest-p"></i></a></li>
+                                <li><a href="{{ $provider_setting->footer_linkedin }}"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="{{ $provider_setting->footer_instagram }}"><i class="fa fa-instagram"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -98,7 +91,7 @@
                 </div>
             </div>
         </div>
-        <div class="copyright"> Copyright 2022, ArefinDev. All Rights Reserved.</div>
+        <div class="copyright">{{ $provider_setting->footer_copyright }}</div>
         <div class="scroll-top"> <i class="fa fa-angle-up"></i> </div>
         <div id="loader"></div>
         <script src="{{ asset('dist-front/js/custom.js') }}"></script>        

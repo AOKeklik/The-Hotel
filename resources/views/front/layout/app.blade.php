@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-md-6 left-side">
                 <ul>
-                    <li class="phone-text">111-222-3333</li>
-                    <li class="email-text">contact@arefindev.com</li>
+                    <li class="phone-text">{{ $provider_setting->top_phono }}</li>
+                    <li class="email-text">{{ $provider_setting->top_email }}</li>
                 </ul>
             </div>
             <div class="col-md-6 right-side">
@@ -39,7 +39,7 @@
     <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
         <a href="{{ route("front.index") }}" class="logo">
-            <img src="{{ asset("uploads/logo.png") }}" alt="">
+            <img src="{{ asset("uploads/setting/$provider_setting->logo") }}" alt="">
         </a>
     </div>
 
@@ -48,7 +48,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
                 <a class="navbar-brand" href="{{ route("front.index") }}">
-                    <img src="{{ asset("uploads/logo.png") }}" alt="">
+                    <img src="{{ asset("uploads/setting/$provider_setting->logo") }}" alt="">
                 </a>
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">        

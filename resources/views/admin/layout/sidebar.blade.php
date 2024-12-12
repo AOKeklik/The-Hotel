@@ -19,6 +19,8 @@
             </li> --}}
 
             <li class="@if(Route::is("admin.index")) active @endif"><a class="nav-link" href="{{ route('admin.index') }}"><i class="fa fa-hand-o-right"></i> <span>Dashboard</span></a></li>
+
+            <li class="@if(Route::is("admin.setting.edit")) active @endif"><a class="nav-link" href="{{ route("admin.setting.edit") }}"><i class="fa fa-hand-o-right"></i> <span>Setting</span></a></li>
             
             <li class="@if(Route::is("admin.customers")) active @endif"><a class="nav-link" href="{{ route('admin.customers') }}"><i class="fa fa-hand-o-right"></i> <span>Customers</span></a></li>
 
