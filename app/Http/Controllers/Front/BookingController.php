@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Mail\Websitemail;
+use App\Models\BookedRoom;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Room;
+use DateTime;
 use Illuminate\Http\Request;
 Use Stripe;
 
@@ -30,6 +32,17 @@ class BookingController extends Controller
 
         $checkin = explode(" - ",$request->checkin_checkout)[0];
         $checkout = explode(" - ",$request->checkin_checkout)[1];
+
+        $in = DateTime::createFromFormat("d/m/Y",$checkin);
+        $out = DateTime::createFromFormat("d/m/Y",$checkout);
+
+        while($in <= $out) {
+            $bookedRooms = BookedRoom::where("room_id",$room->id)->where("booking_date",$in->format("d/m/Y"))->count();
+            if ($room->total_rooms == $bookedRooms)
+                return redirect()->back()->with("error","Maximum number of this room is already booked");
+
+            $in->modify("+1 day");
+        }
 
         $start = \DateTime::createFromFormat("d/m/Y",$checkin);
         $end = \DateTime::createFromFormat("d/m/Y",$checkout);
@@ -121,6 +134,73 @@ class BookingController extends Controller
     }
 
     public function paypal (Request $request) {
+        
+        $order = new Order();
+
+        $order->customer_id = Auth()->guard("customer")->user()->id;
+        $order->order_no = uniqid();
+        $order->transaction_id = uniqid();
+        $order->payment_method = "PayPal";
+        $order->card_last_digit = random_int(1000, 9999);
+        $order->paid_amount = $request->amount;
+        $order->booking_date = date("d/m/Y");
+        $order->status = "Completed";
+
+        $order->save();
+
+        foreach(Session()->get("cart") as $cart) {
+            $orderDetail = new OrderDetail();
+
+            $orderDetail->order_id = $order->id;
+            $orderDetail->room_id = $cart->cart_room_id;
+            $orderDetail->checkin_date = $cart->cart_checkin;
+            $orderDetail->checkout_date = $cart->cart_checkout;
+            $orderDetail->adult = $cart->cart_adult;
+            $orderDetail->children = $cart->cart_children;
+            $orderDetail->subtotal = $cart->cart_subtotal;
+
+            $orderDetail->save();
+        }
+
+        foreach(Session()->get("cart") as $cart) {
+            $checkin = DateTime::createFromFormat("d/m/Y",$cart->cart_checkin);
+            $checkout = DateTime::createFromFormat("d/m/Y", $cart->cart_checkout);
+
+            while($checkin <= $checkout) {
+                $bookedRoom = new BookedRoom();
+                $bookedRoom->room_id = $cart->cart_room_id;
+                $bookedRoom->booking_date = $checkin->format("d/m/Y");
+                $bookedRoom->order_no = $order->order_no;
+                $bookedRoom->save();
+
+                $checkin->modify("+1 day");
+            }
+        }
+
+        $subject = "New Order";
+        $message = "You have made an order for hotel booking. The booking information is given below: <br>";
+        $message .= "<br><strong>Order No:</strong> ".$order->id;
+        $message .= "<br><strong>Transaction Id:</strong> ".$order->transaction_id;
+        $message .= "<br><strong>Payment Method:</strong> PayPal";
+        $message .= "<br><strong>Paid Amount:</strong> ".$request->amount;
+        $message .= "<br><strong>Booking Date:</strong> ".date("d/m/Y")."<br><hr>";
+
+        foreach(Session()->get("cart") as $cart) {
+            $message .= "<br><strong>Room Name:</strong> ".$cart->cart_room_name;
+            $message .= "<br><strong>Price Per Night:</strong> ".$cart->cart_room_price;
+            $message .= "<br><strong>Checkin Date:</strong> ".$cart->cart_checkin;
+            $message .= "<br><strong>Checkout Date:</strong> ".$cart->cart_checkout;
+            $message .= "<br><strong>Adult:</strong> ".$cart->cart_adult;
+            $message .= "<br><strong>Children:</strong> ".$cart->cart_children;
+            $message .= "<br><strong>Price Subtotal:</strong> ".$cart->cart_subtotal."<br><br>";
+        }
+
+        \Mail::to(Auth()->guard("customer")->user()->email)->send(new Websitemail($subject,$message));
+
+        Session()->forget("cart");
+        Session()->forget("billing");
+
+        return redirect()->route("front.index")->with("status","Payment is successful!");
     }
 
     public function stripe (Request $request) {
@@ -168,6 +248,21 @@ class BookingController extends Controller
             $orderDetail->subtotal = $cart->cart_subtotal;
 
             $orderDetail->save();
+        }
+
+        foreach(Session()->get("cart") as $cart) {
+            $checkin = DateTime::createFromFormat("d/m/Y",$cart->cart_checkin);
+            $checkout = DateTime::createFromFormat("d/m/Y", $cart->cart_checkout);
+
+            while($checkin <= $checkout) {
+                $bookedRoom = new BookedRoom();
+                $bookedRoom->room_id = $cart->cart_room_id;
+                $bookedRoom->booking_date = $checkin->format("d/m/Y");
+                $bookedRoom->order_no = $order->order_no;
+                $bookedRoom->save();
+
+                $checkin->modify("+1 day");
+            }
         }
 
         $subject = "New Order";

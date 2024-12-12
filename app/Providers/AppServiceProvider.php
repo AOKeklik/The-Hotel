@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         
 		$provider_pages = Page::find(1);
-        $provider_rooms = Room::orderBy("id","DESC")->limit(4)->get();
+        $provider_rooms = Room::orderBy("id","DESC")->get();
         
         if ($provider_pages)
             view()->share("provider_pages", $provider_pages);

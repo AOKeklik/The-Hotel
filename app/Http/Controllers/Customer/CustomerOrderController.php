@@ -17,6 +17,10 @@ class CustomerOrderController extends Controller
     public function order ($order_id) {
         Carbon::setLocale('pl');
         $order = Order::find($order_id);
+
+        if(!$order)
+            return redirect()->route("front.index")->with("error","Your cart is empty. Please add items to proceed.");
+
         return view("customer.order",compact("order"));
     }
 }

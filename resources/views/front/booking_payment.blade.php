@@ -17,7 +17,12 @@
 
                         <div class="paypal mt_20">
                             <h4>Pay with PayPal</h4>
-                            <div id="paypal-button"></div>
+                            <form action="{{ route("front.payment.paypal") }}" method="POST">
+                                @csrf
+                                @method("POST")
+                                <input type="hidden" name="amount" value="{{ array_sum(array_column(Session::get("cart"), "cart_subtotal")) }}">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
                         </div>
 
                         <div class="stripe mt_20">
@@ -128,45 +133,4 @@
         </div>
     </div>
 </div>
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 @endsection
-@php
-    $total_price = array_sum(array_column(Session::get("cart"),"cart_subtotal"));
-    $client = 'ARw2VtkTvo3aT7DILgPWeSUPjMK_AS5RlMKkUmB78O8rFCJcfX6jFSmTDpgdV3bOFLG2WE-s11AcCGTD';
-@endphp
-@push("scripts")
-    {{-- paypal --}}
-    <script>
-        paypal.Button.render({
-            env: 'sandbox',
-            client: {
-                sandbox: '{{ $client }}',
-                production: '{{ $client }}'
-            },
-            locale: 'en_US',
-            style: {
-                size: 'medium',
-                color: 'blue',
-                shape: 'rect',
-            },
-            // Set up a payment
-            payment: function (data, actions) {
-                return actions.payment.create({
-                    redirect_urls:{
-                        return_url: '{{ url("payment/paypal/$total_price") }}'
-                    },
-                    transactions: [{
-                        amount: {
-                            total: '{{ $total_price }}',
-                            currency: 'USD'
-                        }
-                    }]
-                });
-            },
-            // Execute the payment
-            onAuthorize: function (data, actions) {
-                return actions.redirect();
-            }
-        }, '#paypal-button');
-    </script>
-@endpush

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\RoomPhoto;
 
 class Room extends Model
 {
@@ -16,5 +15,9 @@ class Room extends Model
 
     public function orderDetails () {
         return $this->hasMany(OrderDetail::class);
+    }
+
+    public function bookedRooms () {
+        return $this->hasMany(BookedRoom::class);
     }
 }

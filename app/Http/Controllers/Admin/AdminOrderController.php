@@ -30,10 +30,20 @@ class AdminOrderController extends Controller
         if(!$order)
             return redirect()->back()->with("error","Order not found!");
 
+        if(!$order->orderDetails->isEmpty()) {
+            foreach($order->orderDetails as $detail) {
+                if($detail->room && !$detail->room->bookedRooms->isEmpty()) {
+                    foreach($detail->room->bookedRooms as $booked) {
+                        $booked->delete();
+                    }
+                }
+            }
+        }
+
         if(!$order->orderDetails->isEmpty()) 
             foreach($order->orderDetails as $detail) {
                 $detail->delete();
-            }
+            } 
 
         $order->delete();
 

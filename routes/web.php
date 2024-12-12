@@ -232,6 +232,7 @@ Route::prefix("/")->group( function () {
     Route::get("checkout", [BookingController::class, "checkout"])->name("front.checkout");
     Route::post("checkout/submit", [BookingController::class, "submit_checkout"])->name("front.checkout.submit");
     Route::get("payment", [BookingController::class, "payment"])->name("front.payment");
+    Route::post("payment/paypal", [BookingController::class, "paypal"])->name("front.payment.paypal");
     Route::post("payment/stripe", [BookingController::class, "stripe"])->name("front.payment.stripe");
 });
 
