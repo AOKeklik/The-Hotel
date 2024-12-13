@@ -10,6 +10,7 @@
         <ul class="sidebar-menu">
 
             {{-- <li class="active"><a class="nav-link" href="index.html"><i class="fas fa-hand-point-right"></i> <span>Dashboard</span></a></li>
+            <li class="active"><a class="nav-link" href="index.html"><i class="fa fa-hand-o-right"></i> <span>Dashboard</span></a></li>
             <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Dropdown Items</span></a>
                 <ul class="dropdown-menu">
@@ -21,6 +22,8 @@
             <li class="@if(Route::is("admin.index")) active @endif"><a class="nav-link" href="{{ route('admin.index') }}"><i class="fa fa-hand-o-right"></i> <span>Dashboard</span></a></li>
 
             <li class="@if(Route::is("admin.setting.edit")) active @endif"><a class="nav-link" href="{{ route("admin.setting.edit") }}"><i class="fa fa-hand-o-right"></i> <span>Setting</span></a></li>
+
+    <li class="@if(Route::is("admin.datewise-room")) active @endif"><a class="nav-link" href="{{ route("admin.datewise-room") }}"><i class="fa fa-hand-o-right"></i> <span>Room Datewise</span></a></li>
             
             <li class="@if(Route::is("admin.customers")) active @endif"><a class="nav-link" href="{{ route('admin.customers') }}"><i class="fa fa-hand-o-right"></i> <span>Customers</span></a></li>
 

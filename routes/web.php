@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminCustomerController;
+use App\Http\Controllers\Admin\AdminDatewiseRoomController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminPhotoController;
@@ -53,6 +54,10 @@ Route::prefix("admin")->middleware(["admin:admin"])->group(function () {
     /* setting */
     Route::get("setting/edit", [AdminSettingController::class, "edit_setting"])->name("admin.setting.edit");
     Route::put("setting/update", [AdminSettingController::class, "update_setting"])->name("admin.setting.update");
+
+    /* rooms */
+    Route::get("datewise-room", [AdminDatewiseRoomController::class, "index"])->name("admin.datewise-room");
+    Route::post("datewise-room/submit", [AdminDatewiseRoomController::class, "submit_datewise_room"])->name("admin.datewise-room.submit");
 
     /* profile */
     Route::get("profile", [AdminProfileController::class, "index"])->name("admin.profile");
